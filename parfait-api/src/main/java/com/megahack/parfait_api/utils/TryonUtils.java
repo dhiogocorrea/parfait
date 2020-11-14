@@ -1,6 +1,6 @@
 package com.megahack.parfait_api.utils;
 
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.base64.Base64;
+import org.postgresql.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
