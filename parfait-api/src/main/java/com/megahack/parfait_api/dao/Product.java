@@ -38,7 +38,7 @@ public class Product {
 	        orphanRemoval = true,
 	        fetch = FetchType.EAGER
 	)
-	@JoinColumn(name = "image_id")
+	@JoinColumn(name = "product_id")
 	List<Image> images;
 	
 	public Product() {}
