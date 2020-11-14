@@ -1,6 +1,5 @@
 package com.megahack.parfait_api.utils;
 
-import org.postgresql.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -39,7 +38,7 @@ public class TryonUtils {
 	    map.add("name", customId + ".png");
 	    map.add("filename", customId + ".png");
 
-	    byte[] bytes = Base64.decode(pictureB64);
+	    byte[] bytes = java.util.Base64.getDecoder().decode(pictureB64);
 	    ByteArrayResource contentsAsResource = new ByteArrayResource(bytes) {
 	        @Override
 	        public String getFilename() {
