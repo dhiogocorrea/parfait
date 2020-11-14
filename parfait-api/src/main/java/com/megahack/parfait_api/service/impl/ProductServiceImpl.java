@@ -16,22 +16,22 @@ import com.megahack.parfait_api.service.ProductService;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	private ProductRepository clothesRepository;
+	private ProductRepository productRepository;
 	
 	@Autowired
-	public ProductServiceImpl(ProductRepository clothesRepository) {
-		this.clothesRepository = clothesRepository;
+	public ProductServiceImpl(ProductRepository productRepository) {
+		this.productRepository = productRepository;
 	}
 
 	@Override
 	public List<Product> getSample(int size) {
-		List<Product> allClothes = Lists.newArrayList(clothesRepository.findAll());
+		List<Product> allProducts = Lists.newArrayList(productRepository.findAll());
 		
-		if (size >= allClothes.size())
-			return allClothes;
+		if (size >= allProducts.size())
+			return allProducts;
 
-		Collections.shuffle(allClothes);
-		return allClothes.subList(0, size);
+		Collections.shuffle(allProducts);
+		return allProducts.subList(0, size);
 	}
 
 	@Override
@@ -48,7 +48,19 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void create(ProductDto dto) {
-		// TODO Auto-generated method stub
+		Product product = new Product();
+		product.setProductId(dto.getId());
+		product.setUrl(dto.getUrl());
+		product.setTitle(dto.getTitle());
+		product.setDescription(dto.getDescription());
+		product.setSkuId(dto.getSkuId());
+		product.setPercentDiscount(dto.getPercentDiscount());
+		product.setGender(dto.getGender());
+		product.setBrand(dto.getBrand());
+		product.setListPrice(dto.getListPrice());
+		product.setImages(dto.getImages());
+
+		productRepository.save(product);
 	}
 
 	@Override

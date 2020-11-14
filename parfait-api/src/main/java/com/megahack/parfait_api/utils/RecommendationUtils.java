@@ -29,11 +29,11 @@ public class RecommendationUtils {
 		this.restTemplate = restTemplate;
 	}
 
-	public List<Product> generateRecommendations(Customer customer) {
-		List<Product> recomm = new ArrayList<Product>();
+	public List<String> generateRecommendations(Customer customer) {
+		List<String> recomm = new ArrayList<String>();
 		
 		customer.getProducts().stream().forEach(p -> {
-			List<Product> recommendedClothes = getProductRecommendations(p);
+			List<String> recommendedClothes = getProductRecommendations(p);
 			
 			if (recommendedClothes != null)
 				recomm.addAll(recommendedClothes);
@@ -42,10 +42,10 @@ public class RecommendationUtils {
 		return recomm;
 	}
 	
-	private List<Product> getProductRecommendations(Product targetClothes) {
+	private List<String> getProductRecommendations(Product targetClothes) {
 		String url = config.getRecommendationUrl() + "/?id=";
-		ResponseEntity<Product[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
-				Product[].class);
+		ResponseEntity<String[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
+				String[].class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			return Arrays.asList(response.getBody());
 		} else {

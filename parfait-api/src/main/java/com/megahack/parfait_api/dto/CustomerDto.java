@@ -15,7 +15,7 @@ public class CustomerDto {
 	private long weight;
 	private Sex sex;
 	private PictureDto picture;
-	private List<Long> chosenProductsIds;
+	private List<String> chosenProductsIds;
 
 	public CustomerDto() {}
 
@@ -91,11 +91,11 @@ public class CustomerDto {
 		this.picture = picture;
 	}
 
-	public List<Long> getChosenProductsIds() {
+	public List<String> getChosenProductsIds() {
 		return chosenProductsIds;
 	}
 
-	public void setChosenProductsIds(List<Long> chosenProductsIds) {
+	public void setChosenProductsIds(List<String> chosenProductsIds) {
 		this.chosenProductsIds = chosenProductsIds;
 	}
 

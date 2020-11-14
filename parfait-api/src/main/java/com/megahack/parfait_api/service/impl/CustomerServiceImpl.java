@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.megahack.parfait_api.dao.Product;
+import com.google.common.collect.Lists;
 import com.megahack.parfait_api.dao.Customer;
 import com.megahack.parfait_api.dao.Picture;
 import com.megahack.parfait_api.dto.CustomerChangePasswordDto;
@@ -86,7 +87,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setMetricsStatus(Status.CREATING);
 		
 		List<Product> products = new ArrayList<Product>();
-		for (Long productId : customerDto.getChosenProductsIds()) {
+		for (String productId : customerDto.getChosenProductsIds()) {
 			productRepository.findById(productId).ifPresent(p -> {
 				products.add(p);
 			});
@@ -99,8 +100,11 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	private void triggerProcessesWhenUserCreated(Customer customer) {
 		//TRIGGER DA RECOMENDAÇÃO
-		List<Product> newProducts = recommendationUtils.generateRecommendations(customer);
-		customer.setProducts(newProducts);
+		List<String> newProductsIds = recommendationUtils.generateRecommendations(customer);
+
+		Iterable<Product> newProducts = productRepository.findAllById(newProductsIds);
+
+		customer.setProducts(Lists.newArrayList(newProducts));
 		customer.setRecommendationStatus(Status.SUCCESS);
 		
 		customerRepository.save(customer);

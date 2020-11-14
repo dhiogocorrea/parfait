@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.megahack.parfait_api.dao.Product;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, String> {
 }

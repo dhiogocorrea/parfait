@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Product {
 
 	@Id
-	private long productId;
+	private String productId;
 	
 	private String url;
 	private String title;
@@ -43,11 +43,11 @@ public class Product {
 	
 	public Product() {}
 
-	public long getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 
-	public void setProductId(long productId) {
+	public void setProductId(String productId) {
 		this.productId = productId;
 	}
 
