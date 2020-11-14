@@ -38,15 +38,15 @@ public class ImageUtils {
 		String imageUrl = image.getSmallImageUrl();
 		
 		byte[] data = getImage(imageUrl);
-		String extension = imageUrl.split(".")[imageUrl.split(".").length - 1];
+		String extension = imageUrl.substring(imageUrl.lastIndexOf("."));
 
-		try (FileOutputStream fos = new FileOutputStream(image.getId() + "." + extension)) {
+		try (FileOutputStream fos = new FileOutputStream(image.getId() + extension)) {
 			fos.write(data);
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
 		
-		File imageFile = new File(image.getId() + "." + extension);
+		File imageFile = new File(image.getId() + extension);
 		try {
 			String imageContent = this.tesseract.doOCR(imageFile);
 			return imageContent.split(" ").length > 20;
