@@ -6,5 +6,5 @@ import com.megahack.parfait_api.dao.Product;
 import com.megahack.parfait_api.dto.ProductDto;
 
 public interface ProductService extends BaseService<Product, ProductDto> {
-	List<Product> getSample(int size);
+	List<Product> getSample(int size, String gender);
 }

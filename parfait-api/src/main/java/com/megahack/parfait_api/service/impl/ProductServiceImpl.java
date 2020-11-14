@@ -2,6 +2,7 @@ package com.megahack.parfait_api.service.impl;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getSample(int size) {
+	public List<Product> getSample(int size, String gender) {
 		List<Product> allProducts = this.getAll();
+		
+		if (gender != null) {
+			final String genderLower = gender.toLowerCase();
+			if (genderLower == "masculino" || genderLower == "feminino") {
+				allProducts = allProducts.stream().filter(x -> x.getGender().toLowerCase() == genderLower)
+												  .collect(Collectors.toList());
+			}
+		}
 		
 		if (size >= allProducts.size())
 			return allProducts;

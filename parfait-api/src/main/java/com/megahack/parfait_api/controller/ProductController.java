@@ -25,8 +25,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/sample", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Product> getSample(@RequestParam int size) {
-		return productsService.getSample(size);
+	public List<Product> getSample(@RequestParam int size, @RequestParam String gender) {
+		return productsService.getSample(size, gender);
 	}
 	
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
