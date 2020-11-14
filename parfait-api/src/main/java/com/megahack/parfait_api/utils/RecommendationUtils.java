@@ -27,6 +27,7 @@ public class RecommendationUtils {
 	@Autowired
 	public RecommendationUtils(InterServiceConfiguration config, RestOperations restTemplate) {
 		this.restTemplate = restTemplate;
+		this.config = config;
 	}
 
 	public List<String> generateRecommendations(Customer customer) {

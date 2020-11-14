@@ -10,13 +10,13 @@ public class Image {
 
 	@Id
 	private String id;
-	
 	private String smallImageUrl;
 	private String zoomImageUrl;
 	private String mediumImageUrl;
 	private String thumbImageUrl;
 	private String showcaseImageUrl;
 	private String largeImageUrl;
+	private boolean target;
 	
 	public Image() {}
 
@@ -74,5 +74,13 @@ public class Image {
 
 	public void setLargeImageUrl(String largeImageUrl) {
 		this.largeImageUrl = largeImageUrl;
+	}
+
+	public boolean isTarget() {
+		return target;
+	}
+
+	public void setTarget(boolean target) {
+		this.target = target;
 	}
 }
