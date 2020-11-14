@@ -1,11 +1,15 @@
 package com.megahack.parfait_api.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -87,6 +91,24 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void delete(long id) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Product getOne(String id) {
+		Optional<Product> opt = productRepository.findById(id);
+		
+		if (opt.isPresent())
+			return opt.get();
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id " + id);
+	}
+	
+	private List<Product> filterOnlyTopClothes(List<Product> products) {
+		List<String> keywords = new ArrayList<String>();
+		keywords.add("blusa");
+		
+		return products.stream().filter(x -> {
+			return keywords.contains(x.getUrl());
+		}).collect(Collectors.toList());
 	}
 
 }

@@ -34,6 +34,12 @@ public class ProductController {
 	public List<Product> getAll() {
 		return productsService.getAll();
 	}
+	
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public Product getOne(@PathVariable String id) {
+		return productsService.getOne(id);
+	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)

@@ -22,19 +22,19 @@ public class ImageUtils {
 	
 	private RestOperations restTemplate;
 	TesseractConfiguration tesseractConfiguration;
-	private ITesseract tesseract;
 
 	@Autowired
 	public ImageUtils(TesseractConfiguration tesseractConfiguration, RestOperations restTemplate) {
 		this.tesseractConfiguration = tesseractConfiguration;
 		this.restTemplate = restTemplate;
-		this.tesseract = new Tesseract();
-		this.tesseract.setDatapath(tesseractConfiguration.getTessdataPath());
-		this.tesseract.setLanguage("por");
 
 	}
 
 	public boolean isCertificate(Image image) {
+		ITesseract tesseract  = new Tesseract();
+		tesseract.setDatapath(tesseractConfiguration.getTessdataPath());
+		tesseract.setLanguage("por");
+		
 		String imageUrl = image.getSmallImageUrl();
 		
 		byte[] data = getImage(imageUrl);
@@ -48,7 +48,7 @@ public class ImageUtils {
 		
 		File imageFile = new File(image.getId() + extension);
 		try {
-			String imageContent = this.tesseract.doOCR(imageFile);
+			String imageContent = tesseract.doOCR(imageFile);
 			return imageContent.split(" ").length > 20;
 		} catch (TesseractException e) {
 			System.out.println("Deu ruim no tesseract");
