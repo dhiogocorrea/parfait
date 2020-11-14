@@ -66,7 +66,7 @@ def main():
 
             cv2.imwrite(file_png, img)
 
-            original = load_img(filename, target_size=(224, 224))
+            original = load_img(file_png, target_size=(224, 224))
             numpy_image = img_to_array(original)
             image_batch = np.expand_dims(numpy_image, axis=0)
         
