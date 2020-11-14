@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.megahack.parfait_api.dao.Customer;
 import com.megahack.parfait_api.dao.Image;
 import com.megahack.parfait_api.dao.Product;
 import com.megahack.parfait_api.dto.ProductDto;
@@ -128,6 +129,20 @@ public class ProductServiceImpl implements ProductService {
 		return products.stream().filter(x -> {
 			return keywords.contains(x.getUrl());
 		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Product> getMyRecomendations(Customer c, String filter) {
+		if (filter != null && filter != "") {
+			List<Product> filterProds = productRepository.findByDescriptionIgnoreCaseContaining(filter);
+			List<String> filterProdsIds = filterProds.stream().map(x -> x.getProductId()).collect(Collectors.toList());
+			
+			List<Product> customerProducts = c.getProducts();
+			
+			return customerProducts.stream().filter(x -> filterProdsIds.contains(x.getProductId()))
+											.collect(Collectors.toList());
+		}
+		return c.getProducts();
 	}
 
 }
