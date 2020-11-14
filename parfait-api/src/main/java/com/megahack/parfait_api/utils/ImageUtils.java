@@ -30,7 +30,7 @@ public class ImageUtils {
 		this.restTemplate = restTemplate;
 		this.tesseract = new Tesseract();
 		this.tesseract.setDatapath(tesseractConfiguration.getTessdataPath());
-		this.tesseract.setLanguage("pt");
+		this.tesseract.setLanguage("por");
 
 	}
 
