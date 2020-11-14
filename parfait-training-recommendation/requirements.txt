@@ -1,0 +1,6 @@
+Pillow>=1.1.7
+matplotlib>=3.3.3
+tensorflow
+keras>=2.4.3
+scikit-learn>=0.23.2
+pandas>=1.1.4

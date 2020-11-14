@@ -7,4 +7,5 @@ import com.megahack.parfait_api.dto.ProductDto;
 
 public interface ProductService extends BaseService<Product, ProductDto> {
 	List<Product> getSample(int size, String gender);
+	Product getOne(String id);
 }

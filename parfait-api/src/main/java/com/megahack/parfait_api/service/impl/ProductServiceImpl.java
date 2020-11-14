@@ -1,11 +1,15 @@
 package com.megahack.parfait_api.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -22,15 +26,24 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 	private ImageUtils imageUtils;
 	
+	List<String> keywords = new ArrayList<String>();
+
 	@Autowired
 	public ProductServiceImpl(ProductRepository productRepository, ImageUtils imageUtils) {
 		this.productRepository = productRepository;
 		this.imageUtils = imageUtils;
+		
+		keywords.add("blusa"); keywords.add("camiseta"); keywords.add("gravata");
+		keywords.add("camisa"); keywords.add("macacao"); keywords.add("body");
+		keywords.add("macaquinho"); keywords.add("jaqueta"); keywords.add("blaizer"); 
+		keywords.add("sueter"); keywords.add("vestido"); keywords.add("manga");
+		keywords.add("sutia"); 
 	}
 
 	@Override
 	public List<Product> getSample(int size, String gender) {
 		List<Product> allProducts = this.getAll();
+		allProducts = filterOnlyTopClothes(allProducts);
 		
 		if (gender != null) {
 			final String genderLower = gender.toLowerCase();
@@ -49,7 +62,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getAll() {
-		return Lists.newArrayList(productRepository.findAll());
+		List<Product> products = Lists.newArrayList(productRepository.findAll());
+		return products;
 	}
 
 	@Override
@@ -61,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void create(ProductDto dto) {
 		Product product = new Product();
-		product.setProductId(dto.getId());
+		product.setProductId(dto.getId() + "-" + dto.getSkuId());
 		product.setUrl(dto.getUrl());
 		product.setTitle(dto.getTitle());
 		product.setDescription(dto.getDescription());
@@ -87,6 +101,33 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void delete(long id) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Product getOne(String id) {
+		Optional<Product> opt = productRepository.findById(id);
+		
+		if (opt.isPresent()) {
+			Product p = opt.get();
+			
+			if (keywords.contains(p.getUrl())) {
+				return p;
+			}
+		}
+		
+		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id " + id);
+	}
+	
+	private List<Product> filterOnlyTopClothes(List<Product> products) {
+		keywords.add("blusa"); keywords.add("camiseta"); keywords.add("gravata");
+		keywords.add("camisa"); keywords.add("macacao"); keywords.add("body");
+		keywords.add("macaquinho"); keywords.add("jaqueta"); keywords.add("blaizer"); 
+		keywords.add("sueter"); keywords.add("vestido"); keywords.add("manga");
+		keywords.add("sutia"); 
+		
+		return products.stream().filter(x -> {
+			return keywords.contains(x.getUrl());
+		}).collect(Collectors.toList());
 	}
 
 }
