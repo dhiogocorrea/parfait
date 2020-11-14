@@ -25,7 +25,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/sample", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Product> getSample(@RequestParam(required = false, value = "50") int size) {
+	public List<Product> getSample(@RequestParam int size) {
 		return productsService.getSample(size);
 	}
 
