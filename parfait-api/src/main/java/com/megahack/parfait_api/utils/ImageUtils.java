@@ -57,6 +57,7 @@ public class ImageUtils {
 	}
 	
 	private byte[] getImage(String imageUrl) {
+		imageUrl = "http:" + imageUrl;
 		ResponseEntity<byte[]> response = restTemplate.exchange(imageUrl, HttpMethod.GET, null, byte[].class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			return response.getBody();
