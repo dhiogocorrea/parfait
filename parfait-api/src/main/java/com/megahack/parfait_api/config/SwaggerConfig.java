@@ -27,7 +27,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
           .select()
-          .apis(RequestHandlerSelectors.basePackage("com.floppyfloppy.api.controller"))
+          .apis(RequestHandlerSelectors.basePackage("com.megahack.parfait_api.controller"))
           .paths(PathSelectors.any())
           .build()
           .securitySchemes(Arrays.asList(new ApiKey("jwtToken", HttpHeaders.AUTHORIZATION, In.HEADER.name())))
