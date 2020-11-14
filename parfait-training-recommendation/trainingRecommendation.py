@@ -43,7 +43,7 @@ def main():
             old_file_name = url.split("/")[-1]
         
             extension = "."+old_file_name.split(".")[-1]
-            pd_id = f["productId"]+"-"+f["skuId"]
+            pd_id = f["productId"]
             r = requests.get("https:"+url, allow_redirects=True)
             filename = 'tumbs/'+ pd_id
             open(filename + extension, 'wb').write(r.content)
