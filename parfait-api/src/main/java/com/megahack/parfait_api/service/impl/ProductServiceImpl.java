@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getSample(int size) {
-		List<Product> allProducts = Lists.newArrayList(productRepository.findAll());
+		List<Product> allProducts = this.getAll();
 		
 		if (size >= allProducts.size())
 			return allProducts;
@@ -36,8 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return Lists.newArrayList(productRepository.findAll());
 	}
 
 	@Override

@@ -28,6 +28,12 @@ public class ProductController {
 	public List<Product> getSample(@RequestParam int size) {
 		return productsService.getSample(size);
 	}
+	
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public List<Product> getAll() {
+		return productsService.getAll();
+	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
