@@ -79,7 +79,7 @@ def main():
     processed_imgs = preprocess_input(images.copy())
     print("Iniciando o treinamento")  
     imgs_features = feat_extractor.predict(processed_imgs)
-    print("Iniciando o treinamento finalizado")
+    print("Treinamento finalizado")
     print("Transformando em DataFrame") 
     cosSimilarities = cosine_similarity(imgs_features)
     cos_similarities_df = pd.DataFrame(cosSimilarities, columns=files, index=files)
