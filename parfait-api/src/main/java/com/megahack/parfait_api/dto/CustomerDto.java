@@ -14,7 +14,8 @@ public class CustomerDto {
 	private long height;
 	private long weight;
 	private Sex sex;
-	private PictureDto picture;
+	private String frontPic;
+	private String sidePic;
 	private List<String> chosenProductsIds;
 
 	public CustomerDto() {}
@@ -83,12 +84,20 @@ public class CustomerDto {
 		this.sex = sex;
 	}
 
-	public PictureDto getPicture() {
-		return picture;
+	public String getFrontPic() {
+		return frontPic;
 	}
 
-	public void setPicture(PictureDto picture) {
-		this.picture = picture;
+	public void setFrontPic(String frontPic) {
+		this.frontPic = frontPic;
+	}
+
+	public String getSidePic() {
+		return sidePic;
+	}
+
+	public void setSidePic(String sidePic) {
+		this.sidePic = sidePic;
 	}
 
 	public List<String> getChosenProductsIds() {

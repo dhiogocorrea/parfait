@@ -45,6 +45,7 @@ public class ProductController {
 		return productsService.getAll();
 	}
 	
+	@ApiOperation(value = "", authorizations = { @io.swagger.annotations.Authorization(value="jwtToken") })
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public Product getOne(@PathVariable String id) {
@@ -54,7 +55,7 @@ public class ProductController {
 	@ApiOperation(value = "", authorizations = { @io.swagger.annotations.Authorization(value="jwtToken") })
 	@RequestMapping(value = "/product/me", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public List<Product> getMyRecomendations(
+	public List<Product> getCustomerProducts(
 			@RequestParam(required = false) String terms,
 			@RequestParam(required = false) String brand,
 			@RequestParam(required = false) String category,
@@ -62,7 +63,13 @@ public class ProductController {
 			@RequestParam(required = false) long highestPrice) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Customer c = customerService.getByEmail(auth.getName());
-		return productsService.getMyRecomendations(c, terms);
+		return productsService.getCustomerProducts(c, terms, brand, category, lowestPrice, highestPrice);
+	}
+	
+	@RequestMapping(value = "/product/categories", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public List<String> availableCategories() {
+		return productsService.getAvailableCategories();
 	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)

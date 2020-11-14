@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.megahack.parfait_api.dto.PictureDto;
 import com.megahack.parfait_api.enums.Status;
 
 @Entity
@@ -28,10 +27,10 @@ public class Picture {
 	private long pictureId;
 	
 	@Column(length=10485760)
-	private String imageB64;
+	private String frontPic;
 	
 	@Column(length=10485760)
-	private String poseEstimation;
+	private String sidePic;
 	
 	@Enumerated(EnumType.STRING)
 	private Status poseEstimationStatus;
@@ -40,9 +39,10 @@ public class Picture {
 	private Date createdIn;
 	
 	public Picture() {}
-	
-	public Picture(PictureDto picture) {
-		this.imageB64 = picture.getImageB64();
+
+	public Picture(String frontPic, String sidePic) {
+		this.frontPic = frontPic;
+		this.sidePic = sidePic;
 		this.poseEstimationStatus = Status.CREATING;
 	}
 
@@ -59,20 +59,20 @@ public class Picture {
 		this.pictureId = pictureId;
 	}
 
-	public String getImageB64() {
-		return imageB64;
+	public String getFrontPic() {
+		return frontPic;
 	}
 
-	public void setImageB64(String imageB64) {
-		this.imageB64 = imageB64;
+	public void setFrontPic(String frontPic) {
+		this.frontPic = frontPic;
 	}
 
-	public String getPoseEstimation() {
-		return poseEstimation;
+	public String getSidePic() {
+		return sidePic;
 	}
 
-	public void setPoseEstimation(String poseEstimation) {
-		this.poseEstimation = poseEstimation;
+	public void setSidePic(String sidePic) {
+		this.sidePic = sidePic;
 	}
 
 	public Status getPoseEstimationStatus() {

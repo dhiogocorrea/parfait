@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -132,17 +133,41 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getMyRecomendations(Customer c, String filter) {
-		if (filter != null && filter != "") {
-			List<Product> filterProds = productRepository.findByDescriptionIgnoreCaseContaining(filter);
-			List<String> filterProdsIds = filterProds.stream().map(x -> x.getProductId()).collect(Collectors.toList());
-			
-			List<Product> customerProducts = c.getProducts();
-			
-			return customerProducts.stream().filter(x -> filterProdsIds.contains(x.getProductId()))
-											.collect(Collectors.toList());
+	public List<Product> getCustomerProducts(Customer c,
+			  String terms, 
+			  String brand, 
+			  String category, 
+			  long lowestPrice, 
+			  long highestPrice) {
+		
+		Stream<Product> customerProducts = c.getProducts().stream();
+		
+		if (brand != null && brand != "") {
+			customerProducts = customerProducts.filter(x -> x.getBrand().toLowerCase() == brand.toLowerCase());
 		}
-		return c.getProducts();
+		if (category != null && category != "") {
+			if (terms == null) terms = category;
+			else terms += " " + category;
+			
+			terms = terms.trim();
+		}
+		
+		if (lowestPrice > 0 && highestPrice > 0) {
+			customerProducts = customerProducts.filter(x -> x.getListPrice() >= lowestPrice && x.getListPrice() <= highestPrice);
+		}
+		
+		if (terms != null && terms != "") {
+			List<Product> filterProds = productRepository.findByDescriptionIgnoreCaseContaining(terms);
+			List<String> filterProdsIds = filterProds.stream().map(x -> x.getProductId()).collect(Collectors.toList());
+
+			customerProducts = customerProducts.filter(x -> filterProdsIds.contains(x.getProductId()));
+		}
+		return customerProducts.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getAvailableCategories() {
+		return keywords;
 	}
 
 }

@@ -20,6 +20,9 @@ public class InterServiceConfiguration {
 	
 	@Value("${parfait.recommendation.url}")
 	private String recommendationUrl;
+	
+	@Value("${parfait.tryon.url}")
+	private String tryonUrl;
 
 	public String getRecommendationUrl() {
 		return recommendationUrl;
@@ -27,5 +30,13 @@ public class InterServiceConfiguration {
 
 	public void setRecommendationUrl(String recommendationUrl) {
 		this.recommendationUrl = recommendationUrl;
+	}
+
+	public String getTryonUrl() {
+		return tryonUrl;
+	}
+
+	public void setTryonUrl(String tryonUrl) {
+		this.tryonUrl = tryonUrl;
 	}
 }

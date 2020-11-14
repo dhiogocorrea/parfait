@@ -2,6 +2,7 @@ package com.megahack.parfait_api.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.megahack.parfait_api.repository.ProductRepository;
 import com.megahack.parfait_api.repository.CustomerRepository;
 import com.megahack.parfait_api.service.CustomerService;
 import com.megahack.parfait_api.utils.RecommendationUtils;
+import com.megahack.parfait_api.utils.TryonUtils;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -31,16 +33,19 @@ public class CustomerServiceImpl implements CustomerService {
 	private ProductRepository productRepository;
 	
 	private RecommendationUtils recommendationUtils;
+	private TryonUtils tryonUtils;
 
 	@Autowired
 	public CustomerServiceImpl(CustomerRepository customerRepository,
 						       PasswordEncoder passwordEncoder,
 							   ProductRepository productRepository,
-							   RecommendationUtils recommendationUtils) {
+							   RecommendationUtils recommendationUtils,
+							   TryonUtils tryonUtils) {
 		this.customerRepository = customerRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.productRepository = productRepository;
 		this.recommendationUtils = recommendationUtils;
+		this.tryonUtils = tryonUtils;
 	}
 	
 	@Override
@@ -79,8 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setSex(customerDto.getSex());
 		
 		List<Picture> pictures = new ArrayList<Picture>();
-		pictures.add(new Picture(customerDto.getPicture()));
-
+		pictures.add(new Picture(customerDto.getFrontPic(), customerDto.getSidePic()));
 		customer.setPictures(pictures);
 		
 		customer.setRecommendationStatus(Status.CREATING);
@@ -107,9 +111,20 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setProducts(Lists.newArrayList(newProducts));
 		customer.setRecommendationStatus(Status.SUCCESS);
 		
-		customerRepository.save(customer);
+		customer = customerRepository.save(customer);
 
 		//TRIGGER DE POSE ESTIMATION
+		boolean completed = tryonUtils.poseEstimation(customer.getCustomerId(),
+													  customer.getPictures().get(0).getPictureId(),
+													  customer.getPictures().get(0).getFrontPic());
+		
+		if(completed) {
+			customer.getPictures().get(0).setPoseEstimationStatus(Status.SUCCESS);
+		} else {
+			customer.getPictures().get(0).setPoseEstimationStatus(Status.ERROR);
+		}
+		
+		customer = customerRepository.save(customer);
 	}
 
 	@Override
@@ -125,5 +140,21 @@ public class CustomerServiceImpl implements CustomerService {
 
 		customer.setPassword(passwordEncoder.encode(customerChangePasswordDto.getNewPassword()));
 		customerRepository.save(customer);
+	}
+
+	@Override
+	public byte[] tryOn(Customer customer, String productId) {
+		Optional<Product> opt = productRepository.findById(productId);
+		
+		if (opt.isPresent() && customer.getPictures().get(0) != null) {
+			if (customer.getPictures().get(0).getPoseEstimationStatus() != Status.SUCCESS) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User picture still being processed or error");
+			}
+			
+			long pictureId = customer.getPictures().get(0).getPictureId();
+			
+			return tryonUtils.tryOn(customer.getCustomerId(), pictureId, productId);
+		}
+		return null;
 	}
 }
