@@ -1,0 +1,32 @@
+.hidden{
+    display: none;
+}
+
+body{
+    background-color: #E93F58;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+.msg{
+    margin: auto;
+    text-align: center;
+}
+
+.msg h1{
+    color: white;
+    font-size: 35px;
+    font-family: 'Inconsolata', monospace;
+}
+
+.msg h5{
+    color: white;
+    font-family: 'Inconsolata', monospace;
+
+}
+
+.msg a{
+    margin-top: 20px;
+    border-radius: 15px;
+}
