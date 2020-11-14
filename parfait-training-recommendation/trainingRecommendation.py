@@ -43,13 +43,13 @@ def main():
             old_file_name = url.split("/")[-1]
         
             extension = "."+old_file_name.split(".")[-1]
-
+            pd_id = f["productId"]+"-"+f["skuId"]
             r = requests.get("https:"+url, allow_redirects=True)
-            filename = 'tumbs/'+ f["productId"]
+            filename = 'tumbs/'+ pd_id
             open(filename + extension, 'wb').write(r.content)
         
             file_path = filename + extension
-            mask_path = 'tumbMasks/'+ f["productId"] + ".png"
+            mask_path = 'tumbMasks/'+ pd_id + ".png"
             file_png = filename + ".png"
 
             img = cv2.imread(file_path, 0)
@@ -82,7 +82,7 @@ def main():
     cosSimilarities = cosine_similarity(imgs_features)
     cos_similarities_df = pd.DataFrame(cosSimilarities, columns=files, index=files)
 
-    cos_similarities_df.to_excel("df_recommendations.xlsx")
+    cos_similarities_df.to_excel("./df_recommendations.xlsx")
 
 
 if __name__ == "__main__":

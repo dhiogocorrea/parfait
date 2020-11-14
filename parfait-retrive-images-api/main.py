@@ -14,13 +14,13 @@ cos_similarities_df = pd.read_excel("df_recommendations.xlsx")
 @app.get("/")
 def retrieve_most_similar_products(img_id, nb_closest_images):
 
-    img_path = img_id + ".jpg"
+    img_path = img_id + ".png"
 
     closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:nb_closest_images+1].index
     
     path_imgs_array = []
 
     for img_index in closest_imgs:
-        path_imgs_array.append(cos_similarities_df[img_index].replace(".jpg", ""))
+        path_imgs_array.append(cos_similarities_df[img_index].replace(".png", ""))
     
     return path_imgs_array
