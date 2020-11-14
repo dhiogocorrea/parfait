@@ -31,6 +31,7 @@ def main():
 
     feat_extractor = Model(inputs=vgg_model.input, outputs=vgg_model.get_layer("fc2").output)
 
+    print("Iniciando o download e a leitura das imagens")
     importedImages = []
     for f in filesJson: 
         url = ""
@@ -43,7 +44,7 @@ def main():
             old_file_name = url.split("/")[-1]
         
             extension = "."+old_file_name.split(".")[-1]
-            pd_id = f["productId"]+"-"+f["skuId"]
+            pd_id = f["productId"]
             r = requests.get("https:"+url, allow_redirects=True)
             filename = 'tumbs/'+ pd_id
             open(filename + extension, 'wb').write(r.content)
@@ -66,24 +67,26 @@ def main():
 
             cv2.imwrite(file_png, img)
 
-            original = load_img(filename, target_size=(224, 224))
+            original = load_img(file_png, target_size=(224, 224))
             numpy_image = img_to_array(original)
             image_batch = np.expand_dims(numpy_image, axis=0)
         
             importedImages.append(image_batch)
             os.remove(file_path)
-        
+     
     images = np.vstack(importedImages)
 
     processed_imgs = preprocess_input(images.copy())
-
+    print("Iniciando o treinamento")  
     imgs_features = feat_extractor.predict(processed_imgs)
-
+    print("Iniciando o treinamento finalizado")
+    print("Transformando em DataFrame") 
     cosSimilarities = cosine_similarity(imgs_features)
     cos_similarities_df = pd.DataFrame(cosSimilarities, columns=files, index=files)
-
+    print("DataFrame finalizado")
+    print("DataFrame to Excel") 
     cos_similarities_df.to_excel("./df_recommendations.xlsx")
-
+    print("Excel finalizado")
 
 if __name__ == "__main__":
     main()
