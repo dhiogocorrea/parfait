@@ -880,7 +880,7 @@ function setAuthorizationCookie(token) {
 }
 
 
-function tryOn(productId, imgElemId, modalId, token) {
+function tryOn(productId, imgElemId, modalId, token, linkLoja) {
 
     $.ajax({
         type: "get",
@@ -890,6 +890,7 @@ function tryOn(productId, imgElemId, modalId, token) {
             alert("Desculpe, ocorreu um erro. Tente em alguns minutos")
         } else {
             $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
+            $("#link-loja").attr("href", linkLoja)
             $("#" + modalId).modal("show");
         }
 

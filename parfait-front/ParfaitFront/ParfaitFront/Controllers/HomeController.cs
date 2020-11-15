@@ -13,6 +13,8 @@ namespace ParfaitFront.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private Dictionary<string,string> picturesObj = new Dictionary<string, string>();
+
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -38,6 +40,21 @@ namespace ParfaitFront.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        public void AddPicturesObj(string photoType, string photoB64)
+        {
+            picturesObj.Add(photoType, photoB64);
+        }
+
+        public Dictionary<string,string> VirifyPicturesObj()
+        {
+            if (picturesObj.Values.Count > 2)
+            {
+                return picturesObj;
+            }
+
+            return null;
         }
     }
 }

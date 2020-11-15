@@ -12,7 +12,7 @@
                         </a>
 
                         <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable" onclick="tryOn('@Model[i].productId', 'tryOnImage', 'tryOnModal', '@token')"><span>Vestir em mim</span></a>
+                            <a style="cursor:pointer;" class="btn-product-icon btn-wishlist btn-expandable" onclick="tryOn('@Model[i].productId', 'tryOnImage', 'tryOnModal', '@token', '@Model[i].url')"><span>Vestir em mim</span></a>
                         </div><!-- End .product-action-vertical -->
 
                         <div class="product-action">
@@ -36,12 +36,18 @@
 </div><!-- End .products -->
 
 <div class="modal fade" id="tryOnModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-
-                <img id="tryOnImage" src=""/>
-
+            <div class="modal-body" style="padding:37px; text-align:center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="icon-close"></i></span>
+                </button>
+                <h5>Esta roupa é <span style="color:#c66;">Parfait</span> pra você!</h5>
+                <img id="tryOnImage" src="" style="margin-left:auto; margin-right:auto; border-radius:6px;  margin-top:30px" />
+                <a href="#" class="btn btn-outline-primary-2" id="link-loja" style="margin-left:auto; margin-right:auto; margin-top:30px; width:192px;" target="_blank">
+                    <span>SITE DA LOJA</span>
+                    <i class="icon-long-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>         
