@@ -51,7 +51,7 @@ public class TryonUtils {
 
 	public byte[] tryOn(long customerId, long pictureId, String productId) {
 		String customId = customerId + "_" + pictureId;
-		String url = this.config.getTryonUrl() + "/math/?id_pessoa=" + customId + "&id_roupa=" + productId;
+		String url = this.config.getTryonUrl() + "/match/?id_pessoa=" + customId + "&id_roupa=" + productId;
 
 		ResponseEntity<byte[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
 				byte[].class);
