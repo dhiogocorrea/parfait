@@ -1,40 +1,48 @@
-﻿<div class="products mb-3">
+﻿@model List<ProductModel>
+@{ var token = ViewBag.token;}
+<div class="products mb-3">
     <div class="row justify-content-center">
-        @for (int i = 0; i < 100; i++)
+        @for (int i = 0; i < Model.Count; i++)
         {
             <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                 <div class="product product-7 text-center">
                     <figure class="product-media">
-                        <a href="#">
-                            <img src="~/assets/images/demos-img/lazy.png" data-oi="/assets/images/products/product-4.jpg" alt="Product image" class="product-image molla-lz">
+                        <a href="@Model[i].url">
+                            <img src="~/assets/images/demos-img/lazy.png" data-oi="@Model[i].images[0].smallImageUrl" alt="@Model[i].title" class="product-image molla-lz">
                         </a>
 
                         <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>Faz o meu estilo</span></a>
+                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable" onclick="tryOn('@Model[i].productId', 'tryOnImage', 'tryOnModal', '@token')"><span>Vestir em mim</span></a>
                         </div><!-- End .product-action-vertical -->
 
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>Comprar</span></a>
+                            <a href="@Model[i].url" class="btn-product btn-cart"><span>Ver na loja</span></a>
                         </div><!-- End .product-action -->
                     </figure><!-- End .product-media -->
 
                     <div class="product-body">
                         <div class="product-cat">
-                            <a href="#">Women</a>
+                            <a href="@Model[i].url">@Model[i].brand</a>
                         </div><!-- End .product-cat -->
-                        <h3 class="product-title"><a href="#">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+                        <h3 class="product-title"><a href="@Model[i].url">@Model[i].title</a></h3><!-- End .product-title -->
                         <div class="product-price">
-                            R$60.00
+                            R$@Model[i].listPrice
                         </div><!-- End .product-price -->
-                        <div class="ratings-container">
-                            <div class="ratings">
-                                <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
-                            </div><!-- End .ratings -->
-                            <span class="ratings-text">( 2 Avaliações )</span>
-                        </div><!-- End .rating-container -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
             </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
         }
     </div><!-- End .row -->
 </div><!-- End .products -->
+
+<div class="modal fade" id="tryOnModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <img id="tryOnImage" src=""/>
+
+            </div>
+        </div>
+    </div>         
+</div>
