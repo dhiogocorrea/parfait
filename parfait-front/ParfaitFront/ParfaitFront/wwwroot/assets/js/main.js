@@ -53,7 +53,7 @@ $(document).ready(function () {
                     catDropdown.find('.dropdown-toggle').attr('aria-expanded', 'false');
                 } 
             }
-		});
+        });
 	}
 
     // Menu init with superfish plugin
@@ -768,4 +768,104 @@ $(document).ready(function () {
             }, 500)
         }, 10000)
     }
+
+    //$("#btn-login").on("click", function () {
+    //    let email = $("#singin-email-2").val()
+    //    let key = $("#singin-password-2").val()
+
+    //    $.ajax({
+    //        type: "post",
+    //        url: "url",
+    //        data: {
+    //            "email": email,
+    //            "password": key
+    //        },
+    //        success: function (response) {
+    //            console.log(response)
+    //        }
+    //    });
+    //})
+
+    $('#get-samples').on('click', function () {
+
+        let valSex = $('#register-sex').val()
+        console.log(valSex)
+        $.ajax({
+            type: "get",
+            url: `https://cors-anywhere.herokuapp.com/http://169.62.157.212:1992/product/sample?gender=${valSex}&size=24`,
+            success: function (response) {
+                $("#my-style").html("")
+                for (let i = 0; i < response.length; i++) {
+                    let images = response[i].images
+                    for (let y = 0; y < images.length; y++) {
+                        if (images[y].target) {
+                            $("#my-style").append(`<div class="mb-2 col-4"><img src="${images[y].smallImageUrl}" data-id="${response[i].productId}" onclick="$(this).toggleClass('img-selected')"></div>`)
+                        }
+                    }
+                }
+            }
+        });
+    })
 });
+
+async function createUser() {
+
+    let email = $("#register-email-2").val()
+    let key = $("#register-password-2").val()
+    let name = $("#register-name").val()
+    let lastName = $("#register-lastName").val()
+    let height = parseFloat($("#register-height").val())
+    let weight = parseFloat($("#register-weight").val())
+
+    let sex = $("#register-sex").val()
+
+    let imageFront = await getBase64($("#imagefront").prop('files')[0])
+    let imageSide = await getBase64($("#imageside").prop('files')[0])
+
+    let chooseClothes = $("#my-style").find(".img-selected")
+
+    let productsIds = []
+    for (let i = 0; i < chooseClothes.length; i++) {
+        let pdId = $(chooseClothes[i]).data("id")
+        productsIds.push(pdId)
+    }
+
+    let data = {
+        "chosenProductsIds": productsIds,
+        "email": email,
+        "frontPic": imageFront,
+        "height": height,
+        "lastName": lastName,
+        "name": name,
+        "password": key,
+        "sex": sex,
+        "sidePic": imageSide,
+        "weight": weight
+    }
+
+    $.ajax({
+        type: "post",
+        url: "https://cors-anywhere.herokuapp.com/http://169.62.157.212:1992/users",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        success: function (response) {
+            $('#signin-modal').modal('hide')
+            login(email, key)
+        }
+    });
+}
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function login(user, pass) {
+
+}
+

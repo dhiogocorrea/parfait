@@ -24,10 +24,6 @@ namespace ParfaitFront.Controllers
             return View();
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
         public IActionResult Privacy()
         {
             return View();
@@ -42,17 +38,22 @@ namespace ParfaitFront.Controllers
         [HttpPost]
         public async Task<IActionResult> Search(string stringSearch)
         {
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("http://169.62.157.212:1992/product/me");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://169.62.157.212:1992/product/me");
 
-            //string urlParameters = $"?terms={stringSearch}";
-            //HttpResponseMessage response = client.GetAsync(urlParameters).Result;
+            string urlParameters = $"?terms={stringSearch}";
+            HttpResponseMessage response = client.GetAsync(urlParameters).Result;
 
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var dataObjects =  await response.Content.ReadAsStringAsync();
-            //}
+            if (response.IsSuccessStatusCode)
+            {
+                var dataObjects = await response.Content.ReadAsStringAsync();
+            }
 
+            return View();
+        }
+
+        public IActionResult Login()
+        {
             return View();
         }
     }
