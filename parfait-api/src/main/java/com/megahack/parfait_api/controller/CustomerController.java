@@ -49,4 +49,14 @@ public class CustomerController {
 		Customer c = customerService.getByEmail(auth.getName());
 		customerService.updatePassword(c, customerChangePasswordDto);
 	}
+	
+	@ApiOperation(value = "", authorizations = { @io.swagger.annotations.Authorization(value="jwtToken") })
+	@RequestMapping(value = "/users/tryon/{productId}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public byte[] tryon(String productId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Customer c = customerService.getByEmail(auth.getName());
+
+		return customerService.tryOn(c, productId);
+	}
 }

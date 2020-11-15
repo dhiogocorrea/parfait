@@ -34,6 +34,7 @@ public class ImageUtils {
 		ITesseract tesseract  = new Tesseract();
 		tesseract.setDatapath(tesseractConfiguration.getTessdataPath());
 		tesseract.setLanguage("por");
+		tesseract.setOcrEngineMode(1);
 		
 		String imageUrl = image.getSmallImageUrl();
 		

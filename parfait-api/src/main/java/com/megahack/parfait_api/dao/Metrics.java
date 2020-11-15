@@ -16,7 +16,5 @@ public class Metrics {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "METRICS_SEQ")
 	private long metricsId;
 	
-	//todo: metricas
-	
 	public Metrics() {}
 }

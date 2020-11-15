@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.megahack.parfait_api.dao.Customer;
 import com.megahack.parfait_api.dao.Image;
 import com.megahack.parfait_api.dao.Product;
 import com.megahack.parfait_api.dto.ProductDto;
@@ -128,6 +130,44 @@ public class ProductServiceImpl implements ProductService {
 		return products.stream().filter(x -> {
 			return keywords.contains(x.getUrl());
 		}).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Product> getCustomerProducts(Customer c,
+			  String terms, 
+			  String brand, 
+			  String category, 
+			  long lowestPrice, 
+			  long highestPrice) {
+		
+		Stream<Product> customerProducts = c.getProducts().stream();
+		
+		if (brand != null && brand != "") {
+			customerProducts = customerProducts.filter(x -> x.getBrand().toLowerCase() == brand.toLowerCase());
+		}
+		if (category != null && category != "") {
+			if (terms == null) terms = category;
+			else terms += " " + category;
+			
+			terms = terms.trim();
+		}
+		
+		if (lowestPrice > 0 && highestPrice > 0) {
+			customerProducts = customerProducts.filter(x -> x.getListPrice() >= lowestPrice && x.getListPrice() <= highestPrice);
+		}
+		
+		if (terms != null && terms != "") {
+			List<Product> filterProds = productRepository.findByDescriptionIgnoreCaseContaining(terms);
+			List<String> filterProdsIds = filterProds.stream().map(x -> x.getProductId()).collect(Collectors.toList());
+
+			customerProducts = customerProducts.filter(x -> filterProdsIds.contains(x.getProductId()));
+		}
+		return customerProducts.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getAvailableCategories() {
+		return keywords;
 	}
 
 }
