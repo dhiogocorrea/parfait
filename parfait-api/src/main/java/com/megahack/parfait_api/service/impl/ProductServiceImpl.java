@@ -135,8 +135,8 @@ public class ProductServiceImpl implements ProductService {
 			  String terms, 
 			  String brand, 
 			  String category, 
-			  float lowestPrice, 
-			  float highestPrice) {
+			  Float lowestPrice, 
+			  Float highestPrice) {
 		
 		Stream<Product> customerProducts = c.getProducts().stream();
 		
@@ -150,8 +150,10 @@ public class ProductServiceImpl implements ProductService {
 			terms = terms.trim();
 		}
 		
-		if (lowestPrice > 0 && highestPrice > 0) {
-			customerProducts = customerProducts.filter(x -> x.getListPrice() >= lowestPrice && x.getListPrice() <= highestPrice);
+		if (lowestPrice != null && highestPrice != null) {
+			if (lowestPrice > 0 && highestPrice > 0) {
+				customerProducts = customerProducts.filter(x -> x.getListPrice() >= lowestPrice && x.getListPrice() <= highestPrice);
+			}
 		}
 		
 		if (terms != null && terms != "") {
