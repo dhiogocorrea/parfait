@@ -9,7 +9,7 @@ import pandas as pd
 
 app = FastAPI()
 
-cos_similarities_df = pd.read_excel("df_recommendations.xlsx")
+cos_similarities_df = pd.read_excel("../parfait-training-recommendation/df_recommendations.xlsx")
 
 @app.get("/")
 def retrieve_most_similar_products(img_id, nb_closest_images):
