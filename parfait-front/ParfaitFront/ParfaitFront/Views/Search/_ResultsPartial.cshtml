@@ -25,8 +25,8 @@
                             <a href="@Model[i].url">@Model[i].brand</a>
                         </div><!-- End .product-cat -->
                         <h3 class="product-title"><a href="@Model[i].url">@Model[i].title</a></h3><!-- End .product-title -->
-                        <div class="product-price">
-                            R$@Model[i].listPrice
+                        <div class="product-price" style="align-items: center;">
+                            R$@Html.Raw(Model[i].listPrice + "0")
                         </div><!-- End .product-price -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
@@ -46,6 +46,10 @@
                 <img id="tryOnImage" src="" style="margin-left:auto; margin-right:auto; border-radius:6px;  margin-top:30px" />
                 <a href="#" class="btn btn-outline-primary-2" id="link-loja" style="margin-left:auto; margin-right:auto; margin-top:30px; width:192px;" target="_blank">
                     <span>SITE DA LOJA</span>
+                    <i class="icon-long-arrow-right"></i>
+                </a>
+                <a href="#" class="btn btn-outline-primary-2" id="link-atendente" style="margin-left:auto; margin-right:auto; margin-top:30px; width:192px;" onclick="redirectAtendente()">
+                    <span>Falar com Atendente</span>
                     <i class="icon-long-arrow-right"></i>
                 </a>
             </div>
