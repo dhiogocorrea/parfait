@@ -19,7 +19,7 @@
     <meta name="apple-mobile-web-app-title" content="Parfait">
     <meta name="application-name" content="Parfait">
     <meta name="msapplication-TileColor" content="#cc6666">
-    <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
+    <meta name="msapplication-config" content="~/assets/images/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -38,115 +38,13 @@
                 @RenderBody()
             </main><!-- End .main -->
 
-            <footer class="footer footer-2">
-
-                <div class="footer-bottom">
-                    <div class="container-fluid">
-                        <p class="footer-copyright mr-5"><img src="assets/images/logo/logoBW1.png" alt="Parfait Logo" width="118"></p><!-- End .footer-copyright -->
-                        <ul class="footer-menu mx-auto">
-                            <li><a href="#">Termos de Uso</a></li>
-                            <li><a href="#">Política de Privacidade</a></li>
-                            <li><a href="#">Nossa equipe</a></li>
-                            <li><a href="#">Atendimento</a></li>
-                        </ul><!-- End .footer-menu -->
-                        <div class="social-icons social-icons-color">
-                            <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                            <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                            <a href="#" class="social-icon social-instagram" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                            <a href="#" class="social-icon social-youtube" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                        </div><!-- End .soial-icons -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-bottom -->
-            </footer><!-- End .footer -->
+            <partial name="_FooterPartial" />
         </div><!-- End .page-wrapper -->
-        <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+        <button id="scroll-top" title="Ir para o topo"><i class="icon-arrow-up"></i></button>
 
-        <div class="mobile-menu-container mobile-menu-light">
-            <div class="mobile-menu-wrapper">
-                <span class="mobile-menu-close"><i class="icon-close"></i></span>
+        <partial name="_MenuMobilePartial" />
 
-                <form action="#" method="get" class="mobile-search">
-                    <label for="mobile-search" class="sr-only">Search</label>
-                    <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Digite sua busca..." required>
-                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                </form>
-
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li class="active">
-                            <a href="#">Feminino</a>
-                            <ul>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Masculino</a>
-                            <ul>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="sf-with-ul">Infantil</a>
-                            <ul>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                                <li><a href="#">Acessórios</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav><!-- End .mobile-nav -->
-
-                <div class="social-icons">
-                    <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                    <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                    <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                    <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                </div><!-- End .social-icons -->
-            </div><!-- End .mobile-menu-wrapper -->
-        </div><!-- End .mobile-menu-container -->
         <!-- Plugins JS File -->
         <script src="~/assets/js/jquery.min.js"></script>
         <script src="~/assets/js/bootstrap.bundle.min.js"></script>
