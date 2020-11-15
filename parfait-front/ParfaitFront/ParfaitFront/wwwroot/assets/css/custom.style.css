@@ -1641,11 +1641,11 @@ a:focus {
 	margin-left: unset;
 }
 
-.header-5 .header-search-extended {
+.header .header-search {
 	display: none;
 }
 
-.header-5 .fixed .header-search-extended {
+.header .fixed .header-search {
 	display: block;
 }
 
