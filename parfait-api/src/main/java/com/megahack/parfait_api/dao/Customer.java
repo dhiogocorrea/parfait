@@ -48,6 +48,7 @@ public class Customer {
         cascade = CascadeType.ALL,
         orphanRemoval = true
 	)
+	@JoinColumn("customer_id")
 	List<Picture> pictures;
 	
 	@OneToOne
