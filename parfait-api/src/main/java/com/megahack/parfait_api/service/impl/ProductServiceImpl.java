@@ -165,7 +165,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		if (c.getSex() == Sex.Masculino || c.getSex() == Sex.Feminino) {
-			customerProducts = customerProducts.filter(x -> x.getGender() == c.getSex().toString());
+			customerProducts = customerProducts.filter(x -> x.getGender().toLowerCase().trim() == c.getSex().toString().toLowerCase().trim());
 		}
 		
 		return customerProducts.collect(Collectors.toList());
