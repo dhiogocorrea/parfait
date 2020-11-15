@@ -886,8 +886,13 @@ function tryOn(productId, imgElemId, modalId, token) {
         type: "get",
         url: "/Search/TryOnImage?productId=" + productId + "&token=" + token,
     }).done((response) => {
-        $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
-        $("#" + modalId).modal("show");
+        if (response === "") {
+            alert("Desculpe, ocorreu um erro. Tente em alguns minutos")
+        } else {
+            $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
+            $("#" + modalId).modal("show");
+        }
+
     });;
 
 }
