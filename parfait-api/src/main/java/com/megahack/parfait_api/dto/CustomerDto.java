@@ -10,7 +10,6 @@ public class CustomerDto {
 	private String lastName;
 	private String email;
 	private String password;
-	private String confirmationPassword;
 	private long height;
 	private long weight;
 	private Sex sex;
@@ -50,14 +49,6 @@ public class CustomerDto {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirmationPassword() {
-		return confirmationPassword;
-	}
-
-	public void setConfirmationPassword(String confirmationPassword) {
-		this.confirmationPassword = confirmationPassword;
 	}
 
 	public long getHeight() {

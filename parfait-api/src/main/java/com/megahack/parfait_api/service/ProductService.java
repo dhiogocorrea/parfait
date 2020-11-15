@@ -13,7 +13,7 @@ public interface ProductService extends BaseService<Product, ProductDto> {
 									  String terms, 
 									  String brand, 
 									  String category, 
-									  long lowestPrice, 
-									  long highestPrice);
+									  float lowestPrice, 
+									  float highestPrice);
 	List<String> getAvailableCategories();
 }

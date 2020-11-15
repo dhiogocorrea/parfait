@@ -137,8 +137,8 @@ public class ProductServiceImpl implements ProductService {
 			  String terms, 
 			  String brand, 
 			  String category, 
-			  long lowestPrice, 
-			  long highestPrice) {
+			  float lowestPrice, 
+			  float highestPrice) {
 		
 		Stream<Product> customerProducts = c.getProducts().stream();
 		

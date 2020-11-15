@@ -59,11 +59,12 @@ public class ProductController {
 			@RequestParam(required = false) String terms,
 			@RequestParam(required = false) String brand,
 			@RequestParam(required = false) String category,
-			@RequestParam(required = false) long lowestPrice,
-			@RequestParam(required = false) long highestPrice) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Customer c = customerService.getByEmail(auth.getName());
-		return productsService.getCustomerProducts(c, terms, brand, category, lowestPrice, highestPrice);
+			@RequestParam(required = false) float lowestPrice,
+			@RequestParam(required = false) float highestPrice) {
+		return productsService.getAll().subList(0, 100);
+		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		//Customer c = customerService.getByEmail(auth.getName());
+		//return productsService.getCustomerProducts(c, terms, brand, category, lowestPrice, highestPrice);
 	}
 	
 	@RequestMapping(value = "/product/categories", method = RequestMethod.GET)

@@ -70,10 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 		if (this.getByEmail(customerDto.getEmail()) != null) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already registered.");
 		}
-		if(customerDto.getPassword() != customerDto.getConfirmationPassword()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password and Confirmation "
-					+ "password does not matches.");
-		}
+
 		Customer customer = new Customer();
 		customer.setName(customerDto.getName());
 		customer.setLastName(customerDto.getLastName());
