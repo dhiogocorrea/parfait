@@ -32,7 +32,7 @@ public class TryonUtils {
 	
 	public boolean poseEstimation(long customerId, long picId, String pictureB64) {
 		String customId = customerId + "_" + picId;
-		String url = this.config.getTryonUrl() + "/pose_estimation/?id_pessoa=" + customId;
+		String url = this.config.getTryonUrl();
 
 		PostEstimationRequestModel model = new PostEstimationRequestModel();
 		model.setId_pessoa(customId);
