@@ -769,27 +769,16 @@ $(document).ready(function () {
         }, 10000)
     }
 
-    //$("#btn-login").on("click", function () {
-    //    let email = $("#singin-email-2").val()
-    //    let key = $("#singin-password-2").val()
+    $("#btn-login").on("click", function () {
+        let email = $("#singin-email-2").val()
+        let key = $("#singin-password-2").val()
 
-    //    $.ajax({
-    //        type: "post",
-    //        url: "url",
-    //        data: {
-    //            "email": email,
-    //            "password": key
-    //        },
-    //        success: function (response) {
-    //            console.log(response)
-    //        }
-    //    });
-    //})
+        login(email, key)
+    })
 
     $('#get-samples').on('click', function () {
 
         let valSex = $('#register-sex').val()
-        console.log(valSex)
         $.ajax({
             type: "get",
             url: `https://cors-anywhere.herokuapp.com/http://169.62.157.212:1992/product/sample?gender=${valSex}&size=24`,
@@ -847,12 +836,10 @@ async function createUser() {
         type: "post",
         url: "https://cors-anywhere.herokuapp.com/http://169.62.157.212:1992/users",
         data: JSON.stringify(data),
-        dataType: "json",
-        contentType: "application/json",
-        success: function (response) {
-            $('#signin-modal').modal('hide')
-            login(email, key)
-        }
+        contentType: "application/json"
+    }).done(() => {
+        $('#signin-modal').modal('hide')
+        login(email, key)
     });
 }
 
@@ -865,7 +852,42 @@ function getBase64(file) {
     });
 }
 
-function login(user, pass) {
+function login(email, key) {
 
+    let data = {
+        "email": email,
+        "password": key
+    }
+
+    $.ajax({
+        type: "post",
+        url: "https://cors-anywhere.herokuapp.com/http://169.62.157.212:1992/auth",
+        data: JSON.stringify(data),
+        contentType: "application/json"
+    }).done((response) => {
+        setAuthorizationCookie(response.token)
+        let url = `/Search?token=${response.token}`;
+        window.location.href = url
+    });;
 }
 
+function setAuthorizationCookie(token) {
+    var cookieName = 'Authorization';
+    var cookieValue = 'Bearer '+ token;
+    var myDate = new Date();
+    myDate.setMonth(myDate.getMonth() + 12);
+    document.cookie = cookieName + "=" + cookieValue + ",expires=" + myDate + ",domain=169.62.157.212,path=/";
+}
+
+
+function tryOn(productId, imgElemId, modalId, token) {
+
+    $.ajax({
+        type: "get",
+        url: "/Search/TryOnImage?productId=" + productId + "&token=" + token,
+    }).done((response) => {
+        $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
+        $("#" + modalId).modal("show");
+    });;
+
+}

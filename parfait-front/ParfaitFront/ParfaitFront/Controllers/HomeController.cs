@@ -35,23 +35,6 @@ namespace ParfaitFront.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Search(string stringSearch)
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://169.62.157.212:1992/product/me");
-
-            string urlParameters = $"?terms={stringSearch}";
-            HttpResponseMessage response = client.GetAsync(urlParameters).Result;
-
-            if (response.IsSuccessStatusCode)
-            {
-                var dataObjects = await response.Content.ReadAsStringAsync();
-            }
-
-            return View();
-        }
-
         public IActionResult Login()
         {
             return View();
