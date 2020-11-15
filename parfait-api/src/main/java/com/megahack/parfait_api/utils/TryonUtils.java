@@ -45,12 +45,14 @@ public class TryonUtils {
 		
 	    map.add("name", customId + extension);
 	    map.add("filename", customId + extension);
+	    
+	    final String ext = extension;
 
 	    byte[] bytes = java.util.Base64.getDecoder().decode(pictureB64);
 	    ByteArrayResource contentsAsResource = new ByteArrayResource(bytes) {
 	        @Override
 	        public String getFilename() {
-	            return customId + extension;
+	            return customId + ext;
 	        }
 	    };
 
