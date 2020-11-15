@@ -892,17 +892,18 @@ function tryOn(productId, imgElemId, modalId, token, linkLoja) {
         } else {
             $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
             $("#link-loja").attr("href", linkLoja)
+            $("#" + modalId).attr("data-pdId", productId);
             $("#" + modalId).modal("show");
-            $("#link-atendente").attr("onClick", redirectAtendente(productId))
         }
 
     });;
 
 }
 
-function redirectAtendente(productId) {
+function redirectAtendente() {
 
     $("#tryOnModal").modal("hide")
+    let productId = $("#tryOnModal").data("pdId");
     $("#overlay-redirect").removeAttr("hidden");
     setTimeout(function () {
         $("#overlay-redirect").attr("hidden", true)
