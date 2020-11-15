@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> allProducts = this.getAll();
 		allProducts = filterOnlyTopClothes(allProducts);
 		
+		System.out.println("Sample requisitado com sexo=" + gender);
 		if (gender != null) {
 			final String genderLower = gender.toLowerCase();
 			if (genderLower == "masculino" || genderLower == "feminino") {
