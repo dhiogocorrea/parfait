@@ -10,8 +10,8 @@ public class CustomerDto {
 	private String lastName;
 	private String email;
 	private String password;
-	private long height;
-	private long weight;
+	private float height;
+	private float weight;
 	private Sex sex;
 	private String frontPic;
 	private String sidePic;
@@ -51,19 +51,19 @@ public class CustomerDto {
 		this.password = password;
 	}
 
-	public long getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(long height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public long getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(long weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 

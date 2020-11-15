@@ -38,8 +38,8 @@ public class Customer {
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String password;
 	
-	private long height;
-	private long weight;
+	private float height;
+	private float weight;
 	
 	@Enumerated(EnumType.STRING)
 	private Sex sex;
@@ -112,19 +112,19 @@ public class Customer {
 		this.password = password;
 	}
 
-	public long getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(long height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public long getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(long weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 
