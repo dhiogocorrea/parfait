@@ -1,0 +1,54 @@
+﻿    <div class="search-frontpage pt-3 pb-3 mb-3 bg-lighter">
+        <div class=" container">
+            <form class="form-inline">
+                <div class="form-group w-100">
+                    <input type="search" class="form-control col" name="q" id="q" placeholder="Digite aqui sua busca..." autocomplete="off" required>
+                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Resultados da busca</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="toolbox">
+                        <div class="toolbox-left">
+                            <div class="toolbox-info">
+                                Mostrando <span>9 de 56</span> Produtos
+                            </div><!-- End .toolbox-info -->
+                        </div><!-- End .toolbox-left -->
+
+                        <div class="toolbox-right">
+                            <div class="toolbox-sort">
+                                <label for="sortby">Ordenar por:</label>
+                                <div class="select-custom">
+                                    <select name="sortby" id="sortby" class="form-control">
+                                        <option value="popularity" selected="selected">Mais relevante</option>
+                                        <option value="date">Mais recente</option>
+                                        <option value="cheap">Preço: do menor para o maior</option>
+                                        <option value="expensive">Preço: do maior para o menor</option>
+                                    </select>
+                                </div>
+                            </div><!-- End .toolbox-sort -->
+                        </div><!-- End .toolbox-right -->
+                    </div><!-- End .toolbox -->
+
+                    <partial name="_ResultsPartial" />
+
+                </div><!-- End .col-lg-9 -->
+                <aside class="col-lg-3 order-lg-first">
+                    <partial name="_FilterPartial"/>
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
