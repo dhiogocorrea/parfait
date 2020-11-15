@@ -164,7 +164,7 @@ public class ProductServiceImpl implements ProductService {
 			customerProducts = customerProducts.filter(x -> filterProdsIds.contains(x.getProductId()));
 		}
 		
-		return customerProducts.collect(Collectors.toList());
+		return filterOnlyTopClothes(customerProducts.collect(Collectors.toList()));
 	}
 
 	@Override
