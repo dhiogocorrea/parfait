@@ -170,9 +170,9 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		if (c.getSex() == Sex.Masculino) {
-			customerProducts = customerProducts.filter(x -> x.getGender() == "Masculino");
+			customerProducts = customerProducts.filter(x -> x.getGender().trim().equals("Masculino"));
 		} else if (c.getSex() == Sex.Feminino) {
-			customerProducts = customerProducts.filter(x -> x.getGender() == "Feminino");
+			customerProducts = customerProducts.filter(x -> x.getGender().equals("Feminino"));
 		}
 		
 		return filterOnlyTopClothes(customerProducts.collect(Collectors.toList()));
