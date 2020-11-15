@@ -5,7 +5,7 @@
         <form class="form-inline">
             <div class="form-group w-100">
                 <input type="search" class="form-control col" name="q" id="q" placeholder="Digite aqui sua busca..." autocomplete="off" required>
-                <button class="btn btn-primary" onclick="mountFilters()"><i class="icon-search"></i></button>
+                <button class="btn btn-primary" type="button" onclick="mountFilters()"><i class="icon-search"></i></button>
             </div>
         </form>
     </div>
@@ -120,7 +120,7 @@
         let brands = brandFilters.join(',')
         let categories = catFilters.join(',')
 
-        let url = `@Url.Action("Filter")?oken=@token&lowestPrice=${lowestPrice}&highestPrice=${highestPrice}`
+        let url = `@Url.Action("Filter")?token=@token&lowestPrice=${lowestPrice}&highestPrice=${highestPrice}`
 
         if (catFilters.length > 0) {
           url += "&categories=" + categories

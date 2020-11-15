@@ -31,7 +31,7 @@ namespace ParfaitFront.Controllers
         public async Task<IActionResult> Index(string stringSearch, string token)
         {
             var url = "http://169.62.157.212:1992/product/me";
-            if (string.IsNullOrEmpty(stringSearch))
+            if (!string.IsNullOrEmpty(stringSearch))
             {
                 url += $"?terms={stringSearch}";
             }
@@ -84,18 +84,18 @@ namespace ParfaitFront.Controllers
             
             url += "?lowestPrice=" + lowestPrice + "&highestPrice=" + highestPrice;
 
-            if (string.IsNullOrEmpty(categories))
+            if (!string.IsNullOrEmpty(categories))
             {
                 url += $"&categories={categories}";
             }
 
-            if (string.IsNullOrEmpty(brands))
+            if (!string.IsNullOrEmpty(brands))
             {
                 url += $"&brands={brands}";
             }
 
 
-            if (string.IsNullOrEmpty(terms))
+            if (!string.IsNullOrEmpty(terms))
             {
                 url += $"&terms={terms}";
             }
