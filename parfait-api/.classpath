@@ -97,17 +97,36 @@
   <classpathentry kind="var" path="M2_REPO/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar" sourcepath="M2_REPO/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-test/5.3.4.RELEASE/spring-security-test-5.3.4.RELEASE.jar" sourcepath="M2_REPO/org/springframework/security/spring-security-test/5.3.4.RELEASE/spring-security-test-5.3.4.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/jsonwebtoken/jjwt/0.9.1/jjwt-0.9.1.jar" sourcepath="M2_REPO/io/jsonwebtoken/jjwt/0.9.1/jjwt-0.9.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger2/2.9.2/springfox-swagger2-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-swagger2/2.9.2/springfox-swagger2-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/swagger/swagger-annotations/1.5.20/swagger-annotations-1.5.20.jar" sourcepath="M2_REPO/io/swagger/swagger-annotations/1.5.20/swagger-annotations-1.5.20-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/swagger/swagger-models/1.5.20/swagger-models-1.5.20.jar" sourcepath="M2_REPO/io/swagger/swagger-models/1.5.20/swagger-models-1.5.20-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spi/2.9.2/springfox-spi-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-spi/2.9.2/springfox-spi-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-core/2.9.2/springfox-core-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-core/2.9.2/springfox-core-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/20.0/guava-20.0.jar" sourcepath="M2_REPO/com/google/guava/guava/20.0/guava-20.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar" sourcepath="M2_REPO/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE.jar" sourcepath="M2_REPO/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-schema/2.9.2/springfox-schema-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-schema/2.9.2/springfox-schema-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-common/2.9.2/springfox-swagger-common-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-swagger-common/2.9.2/springfox-swagger-common-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spring-web/2.9.2/springfox-spring-web-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-spring-web/2.9.2/springfox-spring-web-2.9.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mapstruct/mapstruct/1.2.0.Final/mapstruct-1.2.0.Final.jar" sourcepath="M2_REPO/org/mapstruct/mapstruct/1.2.0.Final/mapstruct-1.2.0.Final-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-ui/2.9.2/springfox-swagger-ui-2.9.2.jar" sourcepath="M2_REPO/io/springfox/springfox-swagger-ui/2.9.2/springfox-swagger-ui-2.9.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger2/2.9.2/springfox-swagger2-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/swagger/swagger-annotations/1.5.20/swagger-annotations-1.5.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/swagger/swagger-models/1.5.20/swagger-models-1.5.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spi/2.9.2/springfox-spi-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-core/2.9.2/springfox-core-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/20.0/guava-20.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-schema/2.9.2/springfox-schema-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-common/2.9.2/springfox-swagger-common-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spring-web/2.9.2/springfox-spring-web-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mapstruct/mapstruct/1.2.0.Final/mapstruct-1.2.0.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-ui/2.9.2/springfox-swagger-ui-2.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sourceforge/tess4j/tess4j/4.5.2/tess4j-4.5.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/java/dev/jna/jna/5.5.0/jna-5.5.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/github/jai-imageio/jai-imageio-core/1.4.0/jai-imageio-core-1.4.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/ghost4j/ghost4j/1.0.1/ghost4j-1.0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar" sourcepath="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" sourcepath="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/xmlgraphics/xmlgraphics-commons/1.4/xmlgraphics-commons-1.4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.7/commons-io-2.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/lowagie/itext/2.1.7/itext-2.1.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/pdfbox/pdfbox/2.0.20/pdfbox-2.0.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/pdfbox/fontbox/2.0.20/fontbox-2.0.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/pdfbox/pdfbox-tools/2.0.20/pdfbox-tools-2.0.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/pdfbox/pdfbox-debugger/2.0.20/pdfbox-debugger-2.0.20.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/pdfbox/jbig2-imageio/3.0.3/jbig2-imageio-3.0.3.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/sourceforge/lept4j/lept4j/1.13.1/lept4j-1.13.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jboss/jboss-vfs/3.2.15.Final/jboss-vfs-3.2.15.Final.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar" sourcepath="M2_REPO/com/google/code/gson/gson/2.8.2/gson-2.8.2-sources.jar"/>
 </classpath>
