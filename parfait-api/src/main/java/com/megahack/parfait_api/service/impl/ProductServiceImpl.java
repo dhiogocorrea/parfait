@@ -45,17 +45,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getSample(int size, String gender) {
-		List<Product> allProducts = this.getAll();
-		allProducts = filterOnlyTopClothes(allProducts);
+		List<Product> allProducts = null;
 		
-		System.out.println("Sample requisitado com sexo=" + gender);
-		if (gender != null) {
-			final String genderLower = gender.toLowerCase();
-			if (genderLower == "masculino" || genderLower == "feminino") {
-				allProducts = allProducts.stream().filter(x -> x.getGender().toLowerCase() == genderLower)
-												  .collect(Collectors.toList());
-			}
+		if (gender != null && (gender == "Masculino" || gender == "Feminino")) {
+			allProducts = productRepository.findByGender(gender);
+		} else {
+			allProducts = this.getAll();
 		}
+
+		allProducts = filterOnlyTopClothes(allProducts);
+
 		
 		if (size >= allProducts.size())
 			return allProducts;

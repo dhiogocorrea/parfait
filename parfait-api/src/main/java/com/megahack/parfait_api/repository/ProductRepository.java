@@ -9,4 +9,5 @@ import com.megahack.parfait_api.dao.Product;
 public interface ProductRepository extends CrudRepository<Product, String> {
 	
 	List<Product> findByDescriptionIgnoreCaseContaining(String description);
+	List<Product> findByGender(String gender);
 }
