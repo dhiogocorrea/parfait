@@ -15,7 +15,7 @@ print("DataFrame ready")
 @app.get("/")
 def retrieve_most_similar_products(img_id, nb_closest_images):
 
-    img_path = img_id + ".png"
+    img_path = "tumbs/" + img_id + ".png"
 
     closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:nb_closest_images+1].index
     
