@@ -15,13 +15,14 @@ print("DataFrame ready")
 @app.get("/")
 def retrieve_most_similar_products(img_id, nb_closest_images):
 
-    img_path = img_id + ".png"
+    img_path = "tumbs/" + img_id + ".png"
 
-    closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:nb_closest_images+1].index
-    
+    closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:int(nb_closest_images)+1].index
+    print(closest_imgs)
     path_imgs_array = []
 
     for img_index in closest_imgs:
-        path_imgs_array.append(cos_similarities_df[img_index].replace(".png", ""))
+        print(cos_similarities_df.index[img_index])
+        path_imgs_array.append(cos_similarities_df.index[img_index].replace(".png", ""))
     
     return path_imgs_array
