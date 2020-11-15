@@ -32,6 +32,7 @@ def main():
     feat_extractor = Model(inputs=vgg_model.input, outputs=vgg_model.get_layer("fc2").output)
 
     print("Iniciando o download e a leitura das imagens")
+    count = 0
     importedImages = []
     for f in filesJson: 
         url = ""
@@ -40,9 +41,9 @@ def main():
                 url = image["smallImageUrl"]
 
         if(url != ""):
-
+            count = count + 1
+            print("Processando Imagem: " + count)
             old_file_name = url.split("/")[-1]
-        
             extension = "."+old_file_name.split(".")[-1]
             pd_id = f["productId"]
             r = requests.get("https:"+url, allow_redirects=True)
