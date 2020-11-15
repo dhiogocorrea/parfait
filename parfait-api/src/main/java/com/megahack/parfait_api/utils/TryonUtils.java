@@ -1,24 +1,28 @@
 package com.megahack.parfait_api.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestOperations;
 
+import com.google.gson.Gson;
+
 import com.megahack.parfait_api.config.InterServiceConfiguration;
+import com.megahack.parfait_api.dao.PostEstimationRequestModel;
+
 
 @Component
 public class TryonUtils {
 
 	private RestOperations restTemplate;
 	private InterServiceConfiguration config;
+	
+	private Gson gson = new Gson();
 	
 	@Autowired
 	public TryonUtils(InterServiceConfiguration config, RestOperations restTemplate) {
@@ -28,36 +32,29 @@ public class TryonUtils {
 	
 	public boolean poseEstimation(long customerId, long picId, String pictureB64) {
 		String customId = customerId + "_" + picId;
-		String url = this.config.getTryonUrl() + "/pose_estimation/?id_pessoa=" + customId;
+		String url = this.config.getTryonUrl() + "/pose_estimation/";
+
+		PostEstimationRequestModel model = new PostEstimationRequestModel();
+		model.setId_pessoa(customId);
+		model.setImage(pictureB64);
 		
-		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
-
-		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-
-	    map.add("name", customId + ".png");
-	    map.add("filename", customId + ".png");
-
-	    byte[] bytes = java.util.Base64.getDecoder().decode(pictureB64);
-	    ByteArrayResource contentsAsResource = new ByteArrayResource(bytes) {
-	        @Override
-	        public String getFilename() {
-	            return customId + ".png";
-	        }
-	    };
-
-	    map.add("file", contentsAsResource);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setContentType(MediaType.APPLICATION_JSON);
 		
-		String response = restTemplate.postForObject(url, map, String.class);
+		String modelSerialized = gson.toJson(model);
+		
+		HttpEntity<String> entity = new HttpEntity<>(modelSerialized, responseHeaders);
+
+		String response = restTemplate.postForObject(url, entity, String.class);
 		return response != null;
 	}
 
-	public byte[] tryOn(long customerId, long pictureId, String productId) {
+	public String tryOn(long customerId, long pictureId, String productId) {
 		String customId = customerId + "_" + pictureId;
-		String url = this.config.getTryonUrl() + "/math/?id_pessoa=" + customId + "&id_roupa=" + productId;
-		
-		ResponseEntity<byte[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
-				byte[].class);
+		String url = this.config.getTryonUrl() + "/match/?id_pessoa=" + customId + "&id_roupa=" + productId;
+
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null,
+				String.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			return response.getBody();
 		} else {
@@ -65,3 +62,4 @@ public class TryonUtils {
 		}
 	}
 }
+

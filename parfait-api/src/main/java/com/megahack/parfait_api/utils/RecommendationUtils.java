@@ -34,17 +34,17 @@ public class RecommendationUtils {
 		List<String> recomm = new ArrayList<String>();
 		
 		customer.getProducts().stream().forEach(p -> {
-			List<String> recommendedClothes = getProductRecommendations(p);
+			List<String> recommendedProducts = getProductRecommendations(p);
 			
-			if (recommendedClothes != null)
-				recomm.addAll(recommendedClothes);
+			if (recommendedProducts != null)
+				recomm.addAll(recommendedProducts);
 		});
 		
 		return recomm;
 	}
 	
-	private List<String> getProductRecommendations(Product targetClothes) {
-		String url = config.getRecommendationUrl() + "/?id=";
+	private List<String> getProductRecommendations(Product targetProduct) {
+		String url = config.getRecommendationUrl() + "/?img_id=" + targetProduct.getProductId() + "&nb_closest_images=10";
 		ResponseEntity<String[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
 				String[].class);
 		if (response.getStatusCode() == HttpStatus.OK) {

@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
 		keywords.add("camisa"); keywords.add("macacao"); keywords.add("body");
 		keywords.add("macaquinho"); keywords.add("jaqueta"); keywords.add("blaizer"); 
 		keywords.add("sueter"); keywords.add("vestido"); keywords.add("manga");
-		keywords.add("sutia"); 
+		keywords.add("sutia"); keywords.add("top"); 
 	}
 
 	@Override
@@ -120,15 +120,13 @@ public class ProductServiceImpl implements ProductService {
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id " + id);
 	}
 	
-	private List<Product> filterOnlyTopClothes(List<Product> products) {
-		keywords.add("blusa"); keywords.add("camiseta"); keywords.add("gravata");
-		keywords.add("camisa"); keywords.add("macacao"); keywords.add("body");
-		keywords.add("macaquinho"); keywords.add("jaqueta"); keywords.add("blaizer"); 
-		keywords.add("sueter"); keywords.add("vestido"); keywords.add("manga");
-		keywords.add("sutia"); 
-		
+	private List<Product> filterOnlyTopClothes(List<Product> products) {		
 		return products.stream().filter(x -> {
-			return keywords.contains(x.getUrl());
+			for(String k : keywords) {
+				if (x.getUrl().contains(k))
+					return true;
+			}
+			return false;
 		}).collect(Collectors.toList());
 	}
 
@@ -137,8 +135,8 @@ public class ProductServiceImpl implements ProductService {
 			  String terms, 
 			  String brand, 
 			  String category, 
-			  long lowestPrice, 
-			  long highestPrice) {
+			  float lowestPrice, 
+			  float highestPrice) {
 		
 		Stream<Product> customerProducts = c.getProducts().stream();
 		

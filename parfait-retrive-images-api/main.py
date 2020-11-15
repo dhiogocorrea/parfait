@@ -9,18 +9,17 @@ import pandas as pd
 
 app = FastAPI()
 
-cos_similarities_df = pd.read_excel("df_recommendations.xlsx")
+cos_similarities_df = pd.read_excel("../parfait-training-recommendation/df_recommendations.xlsx")
+print("DataFrame ready")
 
 @app.get("/")
 def retrieve_most_similar_products(img_id, nb_closest_images):
 
-    img_path = img_id + ".png"
+    img_path = "tumbs/" + img_id + ".png"
 
-    closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:nb_closest_images+1].index
-    
-    path_imgs_array = []
+    closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:int(nb_closest_images)+1].index
+    path_imgs_array = [p.replace(".png", "").replace("tumbs/", "") for p in cos_similarities_df.columns[closest_imgs]]
 
-    for img_index in closest_imgs:
-        path_imgs_array.append(cos_similarities_df[img_index].replace(".png", ""))
+    print(path_imgs_array)
     
     return path_imgs_array
