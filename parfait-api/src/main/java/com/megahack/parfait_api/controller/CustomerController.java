@@ -52,7 +52,7 @@ public class CustomerController {
 	
 	@ApiOperation(value = "", authorizations = { @io.swagger.annotations.Authorization(value="jwtToken") })
 	@RequestMapping(value = "/users/tryon/{productId}", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.OK)
 	public String tryon(@PathVariable String productId) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Customer c = customerService.getByEmail(auth.getName());
