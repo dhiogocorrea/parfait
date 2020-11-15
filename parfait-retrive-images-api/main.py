@@ -23,6 +23,7 @@ def retrieve_most_similar_products(img_id, nb_closest_images):
 
     for img_index in closest_imgs:
         if(img_index in cos_similarities_df):
-            path_imgs_array.append(cos_similarities_df[img_index].replace(".png", ""))
+            print(cos_similarities_df.index[img_index])
+            path_imgs_array.append(cos_similarities_df.index[img_index].replace(".png", ""))
     
     return path_imgs_array
