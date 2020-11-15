@@ -18,11 +18,8 @@ def retrieve_most_similar_products(img_id, nb_closest_images):
     img_path = "tumbs/" + img_id + ".png"
 
     closest_imgs = cos_similarities_df[img_path].sort_values(ascending=False)[1:int(nb_closest_images)+1].index
-    print(closest_imgs)
-    path_imgs_array = []
+    path_imgs_array = [p.replace(".png", "").replace("tumbs/", "") for p in cos_similarities_df.columns[closest_imgs]]
 
-    for img_index in closest_imgs:
-        print(cos_similarities_df.index[img_index])
-        path_imgs_array.append(cos_similarities_df.index[img_index].replace(".png", ""))
+    print(path_imgs_array)
     
     return path_imgs_array
