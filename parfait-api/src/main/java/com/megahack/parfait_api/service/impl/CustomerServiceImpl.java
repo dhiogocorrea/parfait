@@ -140,7 +140,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public byte[] tryOn(Customer customer, String productId) {
+	public String tryOn(Customer customer, String productId) {
 		Optional<Product> opt = productRepository.findById(productId);
 		
 		if (opt.isPresent() && customer.getPictures().get(0) != null) {

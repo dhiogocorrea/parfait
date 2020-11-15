@@ -49,12 +49,12 @@ public class TryonUtils {
 		return response != null;
 	}
 
-	public byte[] tryOn(long customerId, long pictureId, String productId) {
+	public String tryOn(long customerId, long pictureId, String productId) {
 		String customId = customerId + "_" + pictureId;
 		String url = this.config.getTryonUrl() + "/match/?id_pessoa=" + customId + "&id_roupa=" + productId;
 
-		ResponseEntity<byte[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
-				byte[].class);
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null,
+				String.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			return response.getBody();
 		} else {
