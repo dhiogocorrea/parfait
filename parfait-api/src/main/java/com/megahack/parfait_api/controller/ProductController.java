@@ -57,13 +57,13 @@ public class ProductController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<Product> getCustomerProducts(
 			@RequestParam(required = false) String terms,
-			@RequestParam(required = false) String brand,
-			@RequestParam(required = false) String category,
+			@RequestParam(required = false) String brands,
+			@RequestParam(required = false) String categories,
 			@RequestParam(required = false) Float lowestPrice,
 			@RequestParam(required = false) Float highestPrice) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Customer c = customerService.getByEmail(auth.getName());
-		return productsService.getCustomerProducts(c, terms, brand, category, lowestPrice, highestPrice);
+		return productsService.getCustomerProducts(c, terms, brands, categories, lowestPrice, highestPrice);
 	}
 	
 	@RequestMapping(value = "/product/categories", method = RequestMethod.GET)

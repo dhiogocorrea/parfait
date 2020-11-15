@@ -44,7 +44,7 @@ public class RecommendationUtils {
 	}
 	
 	private List<String> getProductRecommendations(Product targetProduct) {
-		String url = config.getRecommendationUrl() + "/?img_id=" + targetProduct.getProductId() + "&nb_closest_images=30";
+		String url = config.getRecommendationUrl() + "/?img_id=" + targetProduct.getProductId() + "&nb_closest_images=50";
 		ResponseEntity<String[]> response = restTemplate.exchange(url, HttpMethod.GET, null,
 				String[].class);
 		if (response.getStatusCode() == HttpStatus.OK) {

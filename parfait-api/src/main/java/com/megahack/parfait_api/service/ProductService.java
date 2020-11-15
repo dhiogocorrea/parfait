@@ -11,8 +11,8 @@ public interface ProductService extends BaseService<Product, ProductDto> {
 	Product getOne(String id);
 	List<Product> getCustomerProducts(Customer c, 
 									  String terms, 
-									  String brand, 
-									  String category, 
+									  String brands, 
+									  String categories, 
 									  Float lowestPrice, 
 									  Float highestPrice);
 	List<String> getAvailableCategories();

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -139,21 +140,32 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getCustomerProducts(Customer c,
 			  String terms, 
-			  String brand, 
-			  String category, 
+			  String brands, 
+			  String categories, 
 			  Float lowestPrice, 
 			  Float highestPrice) {
 		
 		Stream<Product> customerProducts = c.getProducts().stream();
 		
-		if (brand != null && brand != "") {
-			customerProducts = customerProducts.filter(x -> x.getBrand().toLowerCase() == brand.toLowerCase());
+		if (brands != null && brands != "") {
+			List<String> brandsArr = new ArrayList<String>();
+			for(String b : brands.split(",")) {
+				brandsArr.add(b);
+			}
+			customerProducts = customerProducts.filter(x -> brandsArr.contains(x.getBrand().toLowerCase()));
 		}
-		if (category != null && category != "") {
-			if (terms == null) terms = category;
-			else terms += " " + category;
-			
-			terms = terms.trim();
+		
+		if (categories != null && categories != "") {
+			final String[] catArr = categories.split(",");
+
+			customerProducts = customerProducts.filter(x -> {
+				for (String cat : catArr) {
+					if (x.getUrl().toLowerCase().contains(cat.toLowerCase())) {
+						return true;
+					}
+				}
+				return false;
+			});
 		}
 		
 		if (lowestPrice != null && highestPrice != null) {
@@ -170,7 +182,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		
 		if (c.getSex() == Sex.Masculino) {
-			customerProducts = customerProducts.filter(x -> x.getGender().trim().equals("Masculino"));
+			customerProducts = customerProducts.filter(x -> x.getGender().equals("Masculino"));
 		} else if (c.getSex() == Sex.Feminino) {
 			customerProducts = customerProducts.filter(x -> x.getGender().equals("Feminino"));
 		}
