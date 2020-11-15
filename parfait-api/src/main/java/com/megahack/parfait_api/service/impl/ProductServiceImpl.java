@@ -150,7 +150,7 @@ public class ProductServiceImpl implements ProductService {
 			for(String b : brands.split(",")) {
 				brandsArr.add(b);
 			}
-			customerProducts = customerProducts.filter(x -> brandsArr.contains(x.getBrand().toLowerCase()));
+			customerProducts = customerProducts.filter(x -> brandsArr.contains(x.getBrand()));
 		}
 		
 		if (categories != null && categories != "") {
