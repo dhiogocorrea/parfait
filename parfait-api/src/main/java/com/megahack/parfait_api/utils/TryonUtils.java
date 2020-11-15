@@ -35,14 +35,22 @@ public class TryonUtils {
 
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
-	    map.add("name", customId + ".png");
-	    map.add("filename", customId + ".png");
+		String extension = "jpg";
+		
+		if (pictureB64.substring(0, 50).contains("jpeg")) {
+			extension = ".jpeg";
+		} else if (pictureB64.substring(0, 50).contains("png")) {
+			extension = ".png";
+		}
+		
+	    map.add("name", customId + extension);
+	    map.add("filename", customId + extension);
 
 	    byte[] bytes = java.util.Base64.getDecoder().decode(pictureB64);
 	    ByteArrayResource contentsAsResource = new ByteArrayResource(bytes) {
 	        @Override
 	        public String getFilename() {
-	            return customId + ".png";
+	            return customId + extension;
 	        }
 	    };
 
