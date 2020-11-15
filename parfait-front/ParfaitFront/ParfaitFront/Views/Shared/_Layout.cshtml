@@ -25,41 +25,42 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/plugins/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="~/assets/css/plugins/jquery.countdown.css">
     <!-- Main CSS File -->
+    <link rel="stylesheet" href="~/assets/css/plugins/nouislider/nouislider.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/assets/css/custom.style.css">
 </head>
-    <body>
-        <div class="page-wrapper">
-            <partial name="@(ViewBag.header??"_DefaultHeaderPartial")" />
+<body>
+    <div class="page-wrapper">
+        <partial name="@(ViewBag.header??"_DefaultHeaderPartial")" />
 
-            <main class="main">
-                @RenderBody()
-            </main><!-- End .main -->
+        <main class="main">
+            @RenderBody()
+        </main><!-- End .main -->
 
-            <partial name="_FooterPartial" />
-        </div><!-- End .page-wrapper -->
+        <partial name="_FooterPartial" />
+    </div><!-- End .page-wrapper -->
 
-        <button id="scroll-top" title="Ir para o topo"><i class="icon-arrow-up"></i></button>
+    <button id="scroll-top" title="Ir para o topo"><i class="icon-arrow-up"></i></button>
 
-        <partial name="_MenuMobilePartial" />
+    <partial name="_MenuMobilePartial" />
 
-        <!-- Plugins JS File -->
-        <script src="~/assets/js/jquery.min.js"></script>
-        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="~/assets/js/jquery.hoverIntent.min.js"></script>
-        <script src="~/assets/js/jquery.waypoints.min.js"></script>
-        <script src="~/assets/js/superfish.min.js"></script>
-        <script src="~/assets/js/owl.carousel.min.js"></script>
-        <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="~/assets/js/jquery.plugin.min.js"></script>
-        <script src="~/assets/js/jquery.countdown.min.js"></script>
+    <!-- Plugins JS File -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/lib/jquery.appear/jquery.appear.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery.lazyload/jquery.lazyload.min.js"></script>
+    <script src="~/assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="~/assets/js/jquery.waypoints.min.js"></script>
+    <script src="~/assets/js/superfish.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/wNumb.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/nouislider.min.js"></script>
 
-        <!-- Main JS File -->
-        <script src="~/assets/js/main.js"></script>
-        <script src="~/assets/js/demos/demo-5.js"></script>
+    <!-- Main JS File -->
+    <script src="~/assets/js/main.js"></script>
 
-        @RenderSection("Scripts", required: false)
-    </body>
+    @RenderSection("Scripts", required: false)
+</body>
 </html>
