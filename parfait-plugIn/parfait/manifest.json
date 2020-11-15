@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Parfait",
+  "version": "1.0.2",
+  "description": "Match de roupas",
+  "permissions": ["webNavigation", "declarativeContent", "storage", "tabs"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.lojasrenner.com.br/*"],
+      "js": [
+        "jquery-3.5.1.slim.min.js",
+        /*"bootstrap.bundle.min.js",*/ "acao.js"
+      ],
+      "css": ["popup.css", "bootstrap.min.css"],
+      "all_frames": true
+    }
+  ],
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "img/logo_red_icon.webp",
+      "32": "img/logo_red_icon.webp",
+      "48": "img/logo_red_icon.webp",
+      "128": "img/logo_red_icon.webp"
+    }
+  },
+  "icons": {
+    "16": "img/logo_red_icon.webp",
+    "48": "img/logo_red_icon.webp",
+    "128": "img/logo_red_icon.webp"
+  }
+}
