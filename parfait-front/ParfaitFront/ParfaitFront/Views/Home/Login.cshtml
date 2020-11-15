@@ -1,0 +1,288 @@
+﻿<nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Entre ou cadastre-se</li>
+        </ol>
+    </div><!-- End .container -->
+</nav><!-- End .breadcrumb-nav -->
+
+<div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('/assets/images/backgrounds/login-bg.jpg')">
+    <div class="container">
+        <div class="form-box">
+            <div class="form-tab">
+                <ul class="nav nav-pills nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab" aria-controls="signin-2" aria-selected="false">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab" aria-controls="register-2" aria-selected="true">Cadastrar</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="singin-email-2">E-mail *</label>
+                                <input type="text" class="form-control" id="singin-email-2" name="singin-email" required>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group">
+                                <label for="singin-password-2">Senha *</label>
+                                <input type="password" class="form-control" id="singin-password-2" name="singin-password" required>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>ENTRAR</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+                                <a href="#" class="forgot-link">Esqueci a minha senha</a>
+                            </div><!-- End .form-footer -->
+                        </form>
+                        <div class="form-choice">
+                            <p class="text-center">ou entre com </p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-login btn-g">
+                                        <i class="icon-google"></i>
+                                        Entre com Google
+                                    </a>
+                                </div><!-- End .col-6 -->
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-login btn-f">
+                                        <i class="icon-facebook-f"></i>
+                                        Entre com Facebook
+                                    </a>
+                                </div><!-- End .col-6 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .form-choice -->
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                        <form action="#">
+                            <div class="form-group">
+                                <label for="register-email-2">E-mail *</label>
+                                <input type="email" class="form-control" id="register-email-2" name="register-email" required>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-group">
+                                <label for="register-password-2">Senha *</label>
+                                <input type="password" class="form-control" id="register-password-2" name="register-password" required>
+                            </div><!-- End .form-group -->
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-outline-primary-2" onclick="$('#signin-modal').modal('show')">
+                                    <span>CADASTRAR</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                </button>
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                    <label class="custom-control-label" for="register-policy-2">Eu concordo com as <a href="#">políticas de privacidade</a> *</label>
+                                </div><!-- End .custom-checkbox -->
+                            </div><!-- End .form-footer -->
+                        </form>
+                        <div class="form-choice">
+                            <p class="text-center">ou cadastre-se com</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-login btn-g">
+                                        <i class="icon-google"></i>
+                                        Cadastre-se com Google
+                                    </a>
+                                </div><!-- End .col-6 -->
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-login  btn-f">
+                                        <i class="icon-facebook-f"></i>
+                                        Cadastre-se com Facebook
+                                    </a>
+                                </div><!-- End .col-6 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .form-choice -->
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .form-tab -->
+        </div><!-- End .form-box -->
+    </div><!-- End .container -->
+</div><!-- End .login-page section-bg -->
+<!-- Sign in / Register Modal -->
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="icon-close"></i></span>
+                </button>
+
+                <div class="form-box">
+                    <div class="form-tab">
+                        <ul class="nav nav-tabs d-none" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="tab-step1" data-toggle="tab" href="#register-step1" role="tab" aria-controls="home" aria-selected="true">1</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-step2" data-toggle="tab" href="#register-step2" role="tab" aria-controls="profile" aria-selected="false">2</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-step3" data-toggle="tab" href="#register-step3" role="tab" aria-controls="messages" aria-selected="false">3</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="tab-content-5">
+                            <div class="tab-pane fade show active" id="register-step1" role="tabpanel" aria-labelledby="signin-tab">
+                                <h5>VAMOS ENCONTRAR A<br><strong>ROUPA PERFEITA</strong> PARA VOCÊ</h5>
+                                <p>Para isso, precisamos saber mais sobre você...</p>
+                                <div class="form-row mt-3">
+                                    <div class="form-group col-6">
+                                        <label for="singin-password">Primeiro nome *</label>
+                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                    </div><!-- End .form-group -->
+                                    <div class="form-group col-6">
+                                        <label for="singin-password">Último nome *</label>
+                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                    </div><!-- End .form-group -->
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <label for="singin-password">Altura *</label>
+                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                    </div><!-- End .form-group -->
+                                    <div class="form-group col-6">
+                                        <label for="singin-password">Peso *</label>
+                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                    </div><!-- End .form-group -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="singin-password">Sexo *</label>
+                                    <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                </div><!-- End .form-group -->
+
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <h4 class="text-center my-0"> <span class="badge badge-pill badge-danger">1</span> <span class="badge badge-pill badge-light">2</span> <span class="badge badge-pill badge-light">3</span></h4>
+                                    </div>
+                                    <div class="col text-right">
+                                        <button type="submit" class="btn btn-outline-primary-2" onclick="$('#tab-step2').tab('show')">
+                                            <span>Prosseguir</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="register-step2" role="tabpanel" aria-labelledby="signin-tab">
+                                <h5>AGORA, VAMOS TIRAR AS SUAS MEDIDAS</h5>
+                                <p>Para melhorar ainda mais os resultados, siga as instruções:</p>
+                                <ul>
+                                    <li><strong>1.</strong> Escolha um ambiente que tenha boa iluminação e um fundo mais neutro.</li>
+                                    <li><strong>2.</strong> Utiliza roupas leves e confortavéis. Evite roupas muito folgadas</li>
+                                    <li><strong>3.</strong> Peça o auxílio de alguma pessoa para tirar uma foto sua</li>
+                                    <li><strong>4.</strong> Pelo celular, scaneie o QRCode ou acesse o link no navegador</li>
+                                </ul>
+                                <center class="mb-3">
+                                    <img src="~/assets/images/QRCode.png" width="150" height="150">
+                                    <a href="#">http://parfait.com.br/ArDga</a>
+                                </center>
+
+
+                                <div class="bg-light p-3 mb-2">
+                                    <div class="form-group row text-left">
+                                        <label for="imagefront" class="col-sm-4 col-form-label">Foto de frente:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" readonly class="form-control-plaintext overflow-hidden" id="imagefront">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0 row text-left">
+                                        <label for="imageside" class="col-sm-4 col-form-label">Foto de perfil:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" readonly class="form-control-plaintext overflow-hidden" id="imageside">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-outline-secondary" onclick="$('#tab-step1').tab('show')">
+                                            <i class="icon-long-arrow-left"></i>
+                                            <span>Voltar</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center my-0"> <span class="badge badge-pill badge-light">1</span> <span class="badge badge-pill badge-danger">2</span> <span class="badge badge-pill badge-light">3</span></h4>
+                                    </div>
+                                    <div class="col text-right">
+                                        <button type="submit" class="btn btn-outline-primary-2" onclick="$('#tab-step3').tab('show')">
+                                            <span>Prosseguir</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="register-step3" role="tabpanel" aria-labelledby="signin-tab">
+                                <h5>POR FIM, QUEREMOS CONHECER O SEU ESTILO!</h5>
+                                <p>Marque abaixo as roupas que fazem o seu estilo e você usaria.</p>
+                                <div class="row my-3" style="max-height: 500px; overflow-y: auto">
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                    <div class="mb-2 col-4"><img src="~/assets/images/products/product-1.jpg" onclick="$(this).toggleClass('img-selected')"></div>
+                                </div>
+                                <style>
+                                    .img-selected {
+                                        border: 5px green solid;
+                                    }
+                                </style>
+
+
+                                <div class="row">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-outline-secondary" onclick="$('#tab-step2').tab('show')">
+                                            <i class="icon-long-arrow-left"></i>
+                                            <span>Voltar</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center my-0"> <span class="badge badge-pill badge-light">1</span> <span class="badge badge-pill badge-light">2</span> <span class="badge badge-pill badge-danger">3</span></h4>
+                                    </div>
+                                    <div class="col text-right">
+                                        <button type="submit" class="btn btn-outline-primary-2" onclick="">
+                                            <span>Finalizar</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div><!-- .End .tab-pane -->
+
+
+
+                        </div><!-- End .tab-content -->
+
+
+
+                    </div><!-- End .form-tab -->
+                </div><!-- End .form-box -->
+            </div><!-- End .modal-body -->
+        </div><!-- End .modal-content -->
+    </div><!-- End .modal-dialog -->
+</div><!-- End .modal -->
