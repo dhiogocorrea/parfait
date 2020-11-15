@@ -1,11 +1,11 @@
 ﻿@model List<ProductModel>
-
+@{ var token = ViewBag.token;}
 <div class="search-frontpage pt-3 pb-3 mb-3 bg-lighter">
     <div class=" container">
         <form class="form-inline">
             <div class="form-group w-100">
                 <input type="search" class="form-control col" name="q" id="q" placeholder="Digite aqui sua busca..." autocomplete="off" required>
-                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                <button class="btn btn-primary" onclick="mountFilters()"><i class="icon-search"></i></button>
             </div>
         </form>
     </div>
@@ -45,11 +45,13 @@
                     </div><!-- End .toolbox-right -->
                 </div><!-- End .toolbox -->
 
-                <partial name="_ResultsPartial" model="@Model"/>
+                <div id="result-div">
+                  <partial name="_ResultsPartial" model="@Model"/>
+                </div>
 
             </div><!-- End .col-lg-9 -->
             <aside class="col-lg-3 order-lg-first">
-                <partial name="_FilterPartial" />
+                <partial name="_FilterPartial" model=@Model />
             </aside><!-- End .col-lg-3 -->
         </div><!-- End .row -->
     </div><!-- End .container -->
@@ -85,8 +87,59 @@
                     priceSlider.noUiSlider.on('update', function (values, handle) {
                         $('#filter-price-range').text(values.join(' - '));
                     });
+
+                    priceSlider.noUiSlider.on('change', function (values, handle) {
+                        mountFilters();
+                    });
                 }
             }
         })
+    </script>
+    <script>
+      function mountFilters() {
+        let catFilters = []
+        let brandFilters = []
+        let terms = $("#q").val()
+
+        var priceSlider = document.getElementById('price-slider');
+        let lowestPrice = priceSlider.noUiSlider.get()[0].replace("R$", "")
+        let highestPrice = priceSlider.noUiSlider.get()[1].replace("R$", "")
+
+        $(".cat").each(function(i, e) {
+          if(e.checked) {
+            catFilters.push($(`#cat-${i+1}`).attr("data-name"))
+          }
+        });
+
+        $(".brand").each(function(i, e) {
+          if(e.checked) {
+            brandFilters.push($(`#brand-${i}`).attr("data-name"))
+          }
+        });
+
+        let brands = brandFilters.join(',')
+        let categories = catFilters.join(',')
+
+        let url = `@Url.Action("Filter")?oken=@token&lowestPrice=${lowestPrice}&highestPrice=${highestPrice}`
+
+        if (catFilters.length > 0) {
+          url += "&categories=" + categories
+        }
+        if (brandFilters.length > 0) {
+          url += "&brands=" + brands
+        }
+        if (terms !== null && terms !== "") {
+          url += "&terms=" + terms
+        }
+
+        console.log(url);
+
+        $.ajax({
+          type: "get",
+          url: url,
+        }).done((response) => {
+          $("#result-div").html(response);
+        });;
+      }
     </script>
 }

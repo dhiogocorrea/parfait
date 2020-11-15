@@ -78,5 +78,46 @@ namespace ParfaitFront.Controllers
 
             return "";
         }
+
+        public IActionResult Filter(string token, float lowestPrice, float highestPrice, string categories, string brands, string terms) {
+            var url = "http://169.62.157.212:1992/product/me";
+            
+            url += "?lowestPrice=" + lowestPrice + "&highestPrice=" + highestPrice;
+
+            if (string.IsNullOrEmpty(categories))
+            {
+                url += $"&categories={categories}";
+            }
+
+            if (string.IsNullOrEmpty(brands))
+            {
+                url += $"&brands={brands}";
+            }
+
+
+            if (string.IsNullOrEmpty(terms))
+            {
+                url += $"&terms={terms}";
+            }
+
+            using (var http = new HttpClient())
+            {
+                http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = http.GetAsync(url).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+
+                    List<ProductModel> model = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ProductModel>>(data);
+
+                    ViewBag.token = token;
+                    return PartialView("_ResultsPartial", model);
+                };
+
+            }
+            
+          return StatusCode(500);
+        }
     }
 }

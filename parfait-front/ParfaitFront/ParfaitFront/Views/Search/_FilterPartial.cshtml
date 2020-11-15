@@ -1,4 +1,5 @@
-﻿<div class="sidebar sidebar-shop">
+﻿@model List<ProductModel>
+<div class="sidebar sidebar-shop">
     <div class="widget widget-clean">
         <label>Filtros:</label>
         <a href="#" class="sidebar-filter-clear">Limpar tudo</a>
@@ -16,66 +17,93 @@
                 <div class="filter-items filter-items-count">
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-1">
-                            <label class="custom-control-label" for="cat-1">Dresses</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="blusa" id="cat-1" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-1">Blusa</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">3</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-2">
-                            <label class="custom-control-label" for="cat-2">T-shirts</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="camiseta" id="cat-2" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-2">Camiseta</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">0</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-3">
-                            <label class="custom-control-label" for="cat-3">Bags</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="gravata" id="cat-3" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-3">Gravata</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">4</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-4">
-                            <label class="custom-control-label" for="cat-4">Jackets</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="camisa" id="cat-4" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-4">Camisa</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">2</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-5">
-                            <label class="custom-control-label" for="cat-5">Shoes</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="macacão" id="cat-5" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-5">Macacão</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">2</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-6">
-                            <label class="custom-control-label" for="cat-6">Jumpers</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="macaquinho" id="cat-6" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-6">Macaquinho</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">1</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-7">
-                            <label class="custom-control-label" for="cat-7">Jeans</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="body" id="cat-7" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-7">Body</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">1</span>
                     </div><!-- End .filter-item -->
 
                     <div class="filter-item">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="cat-8">
-                            <label class="custom-control-label" for="cat-8">Sportwear</label>
+                            <input type="checkbox" class="custom-control-input cat" data-name="blaizer" id="cat-8" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-8">Blaizer</label>
                         </div><!-- End .custom-checkbox -->
-                        <span class="item-count">0</span>
+                    </div><!-- End .filter-item -->
+
+                    <div class="filter-item">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input cat" data-name="sueter" id="cat-9" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-9">Suéter</label>
+                        </div><!-- End .custom-checkbox -->
+                    </div><!-- End .filter-item -->
+
+                    <div class="filter-item">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input cat" data-name="vestido" id="cat-10" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-10">Vestido</label>
+                        </div><!-- End .custom-checkbox -->
+                    </div><!-- End .filter-item -->
+
+                    <div class="filter-item">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input cat" data-name="sutia" id="cat-11" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-11">Sutiã</label>
+                        </div><!-- End .custom-checkbox -->
+                    </div><!-- End .filter-item -->
+
+                    <div class="filter-item">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input cat" data-name="top" id="cat-12" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-12">Top</label>
+                        </div><!-- End .custom-checkbox -->
+                    </div><!-- End .filter-item -->
+
+                    <div class="filter-item">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input cat" data-name="jaqueta" id="cat-13" onchange="mountFilters()">
+                            <label class="custom-control-label" for="cat-13">Jaqueta</label>
+                        </div><!-- End .custom-checkbox -->
                     </div><!-- End .filter-item -->
                 </div><!-- End .filter-items -->
             </div><!-- End .widget-body -->
@@ -92,55 +120,15 @@
         <div class="collapse show" id="widget-4">
             <div class="widget-body">
                 <div class="filter-items">
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-1">
-                            <label class="custom-control-label" for="brand-1">Next</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-2">
-                            <label class="custom-control-label" for="brand-2">River Island</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-3">
-                            <label class="custom-control-label" for="brand-3">Geox</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-4">
-                            <label class="custom-control-label" for="brand-4">New Balance</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-5">
-                            <label class="custom-control-label" for="brand-5">UGG</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-6">
-                            <label class="custom-control-label" for="brand-6">F&F</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
-                    <div class="filter-item">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="brand-7">
-                            <label class="custom-control-label" for="brand-7">Nike</label>
-                        </div><!-- End .custom-checkbox -->
-                    </div><!-- End .filter-item -->
-
+                    @for (var i = 0; i < Model.Select(x => x.brand).Distinct().ToList().Count; i++)
+                    {
+                        <div class="filter-item">
+                          <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input brand" data-name="@Model.Select(x => x.brand).Distinct().ToList()[i]" id="brand-@i" onchange="mountFilters()">
+                              <label class="custom-control-label" for="brand-@i">@Model.Select(x => x.brand).Distinct().ToList()[i]</label>
+                          </div><!-- End .custom-checkbox -->
+                        </div><!-- End .filter-item -->
+                    }
                 </div><!-- End .filter-items -->
             </div><!-- End .widget-body -->
         </div><!-- End .collapse -->
