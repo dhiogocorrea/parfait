@@ -48,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> allProducts = null;
 		
 		if (gender != null && (gender == "Masculino" || gender == "Feminino")) {
+			System.out.println("FIltering by gender = " + gender);
 			allProducts = productRepository.findByGender(gender);
 		} else {
 			allProducts = this.getAll();
