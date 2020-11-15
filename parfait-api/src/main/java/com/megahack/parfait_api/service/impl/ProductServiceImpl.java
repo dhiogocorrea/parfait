@@ -49,7 +49,11 @@ public class ProductServiceImpl implements ProductService {
 		
 		if (gender != null) {
 			System.out.println("FIltering by gender = " + gender);
-			allProducts = productRepository.findByGender(gender);
+			if (gender == "Outro") {
+				allProducts = this.getAll();
+			} else {
+				allProducts = productRepository.findByGender(gender);
+			}
 		} else {
 			allProducts = this.getAll();
 		}
@@ -163,6 +167,12 @@ public class ProductServiceImpl implements ProductService {
 			List<String> filterProdsIds = filterProds.stream().map(x -> x.getProductId()).collect(Collectors.toList());
 
 			customerProducts = customerProducts.filter(x -> filterProdsIds.contains(x.getProductId()));
+		}
+		
+		if (c.getSex() == Sex.Masculino) {
+			customerProducts = customerProducts.filter(x -> x.getGender() == "Masculino");
+		} else if (c.getSex() == Sex.Feminino) {
+			customerProducts = customerProducts.filter(x -> x.getGender() == "Feminino");
 		}
 		
 		return filterOnlyTopClothes(customerProducts.collect(Collectors.toList()));
