@@ -42,7 +42,7 @@ def main():
 
         if(url != ""):
             count = count + 1
-            print("Processando Imagem: " + count)
+            print("Processando Imagem: {}".format(count))
             old_file_name = url.split("/")[-1]
             extension = "."+old_file_name.split(".")[-1]
             pd_id = f["productId"]
