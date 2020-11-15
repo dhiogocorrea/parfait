@@ -18,6 +18,7 @@ import com.megahack.parfait_api.dao.Customer;
 import com.megahack.parfait_api.dao.Image;
 import com.megahack.parfait_api.dao.Product;
 import com.megahack.parfait_api.dto.ProductDto;
+import com.megahack.parfait_api.enums.Sex;
 import com.megahack.parfait_api.repository.ProductRepository;
 import com.megahack.parfait_api.service.ProductService;
 import com.megahack.parfait_api.utils.ImageUtils;
@@ -162,6 +163,11 @@ public class ProductServiceImpl implements ProductService {
 
 			customerProducts = customerProducts.filter(x -> filterProdsIds.contains(x.getProductId()));
 		}
+		
+		if (c.getSex() == Sex.Masculino || c.getSex() == Sex.Feminino) {
+			customerProducts = customerProducts.filter(x -> x.getGender() == c.getSex().toString());
+		}
+		
 		return customerProducts.collect(Collectors.toList());
 	}
 
