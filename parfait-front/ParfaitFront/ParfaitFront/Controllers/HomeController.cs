@@ -13,7 +13,7 @@ namespace ParfaitFront.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private Dictionary<string,string> picturesObj = new Dictionary<string, string>();
+        private static Dictionary<string,string> picturesObj = new Dictionary<string, string>();
 
 
         public HomeController(ILogger<HomeController> logger)
