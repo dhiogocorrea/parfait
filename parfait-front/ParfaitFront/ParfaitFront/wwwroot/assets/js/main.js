@@ -903,7 +903,7 @@ function tryOn(productId, imgElemId, modalId, token, linkLoja) {
 function redirectAtendente() {
 
     $("#tryOnModal").modal("hide")
-    let productId = $("#tryOnModal").data("pdId");
+    let productId = $("#tryOnModal").data("pdid");
     $("#overlay-redirect").removeAttr("hidden");
     setTimeout(function () {
         $("#overlay-redirect").attr("hidden", true)
