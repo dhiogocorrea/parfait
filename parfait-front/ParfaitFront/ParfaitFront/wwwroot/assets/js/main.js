@@ -795,6 +795,7 @@ $(document).ready(function () {
             }
         });
     })
+
 });
 
 async function createUser() {
@@ -892,8 +893,21 @@ function tryOn(productId, imgElemId, modalId, token, linkLoja) {
             $("#" + imgElemId).attr("src", "data:image/jpeg;base64," + response);
             $("#link-loja").attr("href", linkLoja)
             $("#" + modalId).modal("show");
+            $("#link-atendente").attr("onClick", redirectAtendente(productId))
         }
 
     });;
 
+}
+
+function redirectAtendente(productId) {
+
+    $("#tryOnModal").modal("hide")
+    $("#overlay-redirect").removeAttr("hidden");
+    setTimeout(function () {
+        $("#overlay-redirect").attr("hidden", true)
+        let url = "https://meet.jit.si/parfait_" + productId
+        let win = window.open(url, '_blank');
+        win.focus();
+    }, 5000);
 }
