@@ -34,6 +34,7 @@ def main():
     print("Iniciando o download e a leitura das imagens")
     count = 0
     importedImages = []
+    imagesPaths = []
     for f in filesJson: 
         url = ""
         for image in f["images"]:
@@ -73,6 +74,7 @@ def main():
             image_batch = np.expand_dims(numpy_image, axis=0)
         
             importedImages.append(image_batch)
+            imagesPaths.append(file_png)
             os.remove(file_path)
      
     images = np.vstack(importedImages)
@@ -83,7 +85,7 @@ def main():
     print("Treinamento finalizado")
     print("Transformando em DataFrame") 
     cosSimilarities = cosine_similarity(imgs_features)
-    cos_similarities_df = pd.DataFrame(cosSimilarities, columns=files, index=files)
+    cos_similarities_df = pd.DataFrame(cosSimilarities, columns=imagesPaths, index=imagesPaths)
     print("DataFrame finalizado")
     print("DataFrame to Excel") 
     cos_similarities_df.to_excel("./df_recommendations.xlsx")
