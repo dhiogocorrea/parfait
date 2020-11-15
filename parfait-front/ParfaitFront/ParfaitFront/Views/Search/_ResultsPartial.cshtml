@@ -26,7 +26,7 @@
                         </div><!-- End .product-cat -->
                         <h3 class="product-title"><a href="@Model[i].url">@Model[i].title</a></h3><!-- End .product-title -->
                         <div class="product-price" style="align-items: center;">
-                            R$@Model[i].listPrice
+                            R$@Html.Raw(Model[i].listPrice + "0")
                         </div><!-- End .product-price -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
