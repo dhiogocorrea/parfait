@@ -277,7 +277,7 @@
                 url: "@Url.Action("GetNewCaptureId")"
             }).done(function (result) {
                 id = result
-                var url = "http://127.0.0.1:44368/Measure/?id=" + id;
+                var url = "@Url.Action("Index","Measure")?id=" + id;
                 checkImages(id)
                 $("#qrcodeLink").attr("href", url).html(url)
                 $("#qrcodeUrl").attr("src", "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURI(url))
