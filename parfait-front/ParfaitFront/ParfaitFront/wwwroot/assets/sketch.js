@@ -84,3 +84,35 @@ function toggleElements() {
     toggleCanvas()
     toggleButtons()
 }
+
+function nextFoto() {
+    let myCanvas = document.getElementById('canvas');
+    var dataURL = myCanvas.toDataURL();
+    objectImages.push(dataURL)
+
+    $("#resetFoto").toggleClass("hidden")
+    $("#nextFoto").toggleClass("hidden")
+    $("#finish").toggleClass("hidden")
+    toggleElements()
+    toggleMsg()
+}
+
+function finish() {
+    let myCanvas = document.getElementById('canvas');
+    var dataURL = myCanvas.toDataURL();
+    objectImages.push(dataURL)
+    console.log(objectImages)
+
+    $(".foto-component").toggleClass("hidden")
+    $(".main-canvas").toggleClass("hidden")
+    $(".msg").addClass("hidden")
+
+    $(".finish").toggleClass("hidden");
+
+}
+
+function toggleMsg() {
+    $(".msg").toggleClass("hidden")
+}
+
+

@@ -53,6 +53,15 @@
             height: 100px;
             width: 100px;
         }
+
+        .finish {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
     </style>
     <script>
         var picturesId = "@ViewBag.id";
@@ -65,14 +74,14 @@
         <p>Tire um foto de frente, de preferência com os braços levemente abertos</p>
     </div>
     <div class="foto-perfil msg hidden">
-        <h3>Foto 2/2 - Foto perfil:</h3>
+        <h3>Foto 2/2 - Foto de perfil:</h3>
         <p>Tire um foto de perfil, o mais ereto possível</p>
     </div>
     <div class="finish hidden">
         <h1>Muito Obrigado!</h1>
         <h3>Você pode retornar ao site agora.</h3>
     </div>
-    <main>
+    <main class="main-canvas">
         <canvas id="canvas" class="hidden" width="640" height="480" style="width: 640px; height: 480px"></canvas>
     </main>
     <div class="foto-component">
@@ -92,19 +101,25 @@
                 </svg>
                 Tirar outra
             </button>
-            <button id="resetFoto" onclick="toggleElements()" type="button" class="btn btn-dark">Próxima foto
+            <button id="nextFoto" onclick="nextFoto()" type="button" class="btn btn-dark">
+                Próxima foto
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
                 </svg>
             </button>
+            <button id="finish" onclick="finish()" type="button" class="btn btn-dark hidden">
+                Finalizar
+            </button>
         </div>
-        
-        <script src="~/assets/sketch.js"></script>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var objectImages = []
+    </script>
+    <script src="~/assets/sketch.js"></script>
 </body>
 
 </html>
