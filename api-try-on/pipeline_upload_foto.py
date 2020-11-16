@@ -2,25 +2,31 @@ import sys
 import os
 import cv2
 from shutil import copyfile
+import numpy as np 
 
 def resize(img_path):
     img = cv2.imread(img_path)
     dim = (192,256)
     resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-    cv2.imwrite(img_path, img)
+    cv2.imwrite(img_path, resized)
     
     
 def upload_foto(img,id_):
     image_folder = os.path.join(id_,'image','')
-    os.makedirs(image_folder)
+    if not os.path.exists(image_folder):
+        os.makedirs(image_folder)
     image_pose = os.path.join(id_,'pose')
-    os.makedirs(image_pose)
+    if not os.path.exists(image_pose):
+        os.makedirs(image_pose)
     image_parse = os.path.join(id_,'image-parse')
-    os.makedirs(image_parse)
+    if not os.path.exists(image_parse):
+        os.makedirs(image_parse)
     cloth_folder = os.path.join(id_,'cloth')
-    os.makedirs(cloth_folder)
+    if not os.path.exists(cloth_folder):
+        os.makedirs(cloth_folder)
     cloth_mask_folder = os.path.join(id_,'cloth-mask')
-    os.makedirs(cloth_mask_folder)
+    if not os.path.exists(cloth_mask_folder):
+        os.makedirs(cloth_mask_folder)
     image_path = os.path.join(image_folder, id_) + '.jpg'
     val_path = id_+"/val.txt"
     cv2.imwrite(image_path, img)
@@ -34,9 +40,10 @@ def upload_foto(img,id_):
 
 
     #!python3 evaluate_pose_JPPNet-s2.py image_folder val_path id_+"/output/pose/val"
+    print("$@"*50)
     print("python3 LIP_JPPNet/evaluate_pose_JPPNet-s2.py {} {} {}".format(image_folder,val_path,id_+"/output/pose/val"))
     os.system("python3 LIP_JPPNet/evaluate_pose_JPPNet-s2.py {} {} {}".format(image_folder,val_path,id_+"/output/pose/val"))
-
+    print("$%"*50)
     print("python3 LIP_JPPNet/evaluate_parsing_JPPNet-s2.py {} {} {}".format(image_folder,val_path,id_+"/output/parsing/val"))
     os.system("python3 LIP_JPPNet/evaluate_parsing_JPPNet-s2.py {} {} {}".format(image_folder,val_path,id_+"/output/parsing/val"))
 
@@ -46,11 +53,12 @@ def upload_foto(img,id_):
     #!python3 dataset_neck_skin_correction.py id_
     print("python3 LIP_JPPNet/evaluate_parsing_JPPNet-s2.py {}".format(id_))
     os.system("python3 cp-vton-plus/dataset_neck_skin_correction.py {} ".format(id_))
+    os.system("python3 cp-vton-plus/body_binary_masking.py {} ".format(id_))
     
     
 def select_skin(id_pessoa, id_roupa):
     id_ = id_pessoa
-    path_images_gustavo = 'root/parfait/parfait-training-recommendation'
+    path_images_gustavo = '/root/parfait/parfait-training-recommendation'
     cloth_folder = os.path.join(id_,'cloth')
     cloth_mask_folder = os.path.join(id_,'cloth-mask')
     test_pairs = os.path.join(id_, 'test_pairs.txt')
@@ -85,6 +93,6 @@ def select_skin(id_pessoa, id_roupa):
     img_pessoa[img_mask >= 50] = 0
     img_roupa[img_mask < 50] = 0
     img_pessoa = img_pessoa + img_roupa
-    plt.imshow(img_pessoa,cmap='gray')
-    cv2.imwrite("bla.png", img_pessoa)
+    cv2.imwrite(id_+"/final.png", img_pessoa)
+
 

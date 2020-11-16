@@ -13,7 +13,6 @@ namespace ParfaitFront.Controllers
 
     public class SearchController : Controller
     {
-        private string tokenUser;
         private readonly ILogger<HomeController> _logger;
 
         public SearchController(ILogger<HomeController> logger)
