@@ -6,7 +6,7 @@
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.min.js"></script>
 
@@ -46,6 +46,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+        }
+
+        .camera {
+            border-radius: 70%;
+            height: 100px;
+            width: 100px;
+        }
+
+        .finish {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
         }
 
         .camera {
@@ -53,18 +68,29 @@
             height: 100px;
             width: 100px;
         }
-
-        .finish {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-        }
     </style>
     <script>
         var picturesId = "@ViewBag.id";
+        function sendPictures(front, side) {
+            $.ajax({
+                url: "@Url.Action("SendPictures","Home")",
+                data: {
+                    "id": picturesId,
+                    "front": front,
+                    "side": side
+                }
+            }).done(function (result) {
+                if (result != "") {
+                    setTimeout(function () {
+                        checkImages(id)
+                    }, 2000)
+                } else {
+                    if (typeof result["front"] != "undefined" && typeof result["side"] != "undefined") {
+                        alert("Fotos recebidas!")
+                    }
+                }
+            });
+        }
     </script>
 </head>
 

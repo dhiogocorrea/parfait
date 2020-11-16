@@ -186,8 +186,8 @@
                                     <li><strong>4.</strong> Pelo celular, scaneie o QRCode ou acesse o link no navegador</li>
                                 </ul>
                                 <center class="mb-3">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://www.google.com" id="qrcodeUrl" width="150" height="150">
-                                    <a href="#" id="qrcodeLink">http://parfait.com.br/ArDga</a>
+                                    <img src="" id="qrcodeUrl" width="150" height="150">
+                                    <a href="#" id="qrcodeLink" target="_blank"></a>
                                 </center>
 
                                 <div class="bg-light p-3 mb-2">
@@ -277,7 +277,7 @@
                 url: "@Url.Action("GetNewCaptureId")"
             }).done(function (result) {
                 id = result
-                var url = "http://www.parfait.com/Measure/?id=" + id;
+                var url = "http://127.0.0.1:44368/Measure/?id=" + id;
                 checkImages(id)
                 $("#qrcodeLink").attr("href", url).html(url)
                 $("#qrcodeUrl").attr("src", "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURI(url))
