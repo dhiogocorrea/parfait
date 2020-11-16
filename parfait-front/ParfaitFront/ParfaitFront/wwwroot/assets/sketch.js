@@ -10,11 +10,11 @@ let pose;
 let skeleton;
 
 function setup() {
-  createCanvas(640, 480);
-  video = createCapture(VIDEO);
-  video.hide();
-  poseNet = ml5.poseNet(video, modelLoaded);
-  poseNet.on('pose', gotPoses);
+    createCanvas(640, 480);
+    video = createCapture(VIDEO);
+    video.hide();
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
 }
 
 function gotPoses(poses) {
@@ -57,4 +57,30 @@ function draw() {
       line(a.position.x, a.position.y, b.position.x, b.position.y);
     }
   }
+}
+
+function takepicture() {
+    let canvasComponent = document.getElementById('defaultCanvas0');
+    let myCanvas = document.getElementById('canvas');
+    let context = myCanvas.getContext('2d');
+
+    let video = document.getElementsByTagName("video")[0]
+
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    toggleElements()
+}
+
+function toggleCanvas() {
+
+    $("canvas").toggleClass("hidden");
+
+}
+
+function toggleButtons() {
+    $(".btn-div").toggleClass("hidden")
+}
+
+function toggleElements() {
+    toggleCanvas()
+    toggleButtons()
 }

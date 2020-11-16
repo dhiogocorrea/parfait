@@ -5,18 +5,106 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.min.js"></script>
+
     <script src="https://unpkg.com/ml5@0.4.2/dist/ml5.min.js"></script>
     <meta charset="utf-8" />
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        body {
+            padding: 20px;
+            background-color: #e93f58;
+        }
+
+        .msg {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            text-align: center;
+            color: white;
+        }
+
+        .foto-component {
+            position: fixed;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        main {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .camera {
+            border-radius: 70%;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
     <script>
         var picturesId = "@ViewBag.id";
     </script>
 </head>
 
 <body>
-    <button>Tirar foto</button>
-    <script src="~/assets/sketch.js"></script>
+    <div class="foto-frontal msg">
+        <h3>Foto 1/2 - Foto frontal:</h3>
+        <p>Tire um foto de frente, de preferência com os braços levemente abertos</p>
+    </div>
+    <div class="foto-perfil msg hidden">
+        <h3>Foto 2/2 - Foto perfil:</h3>
+        <p>Tire um foto de perfil, o mais ereto possível</p>
+    </div>
+    <div class="finish hidden">
+        <h1>Muito Obrigado!</h1>
+        <h3>Você pode retornar ao site agora.</h3>
+    </div>
+    <main>
+        <canvas id="canvas" class="hidden" width="640" height="480" style="width: 640px; height: 480px"></canvas>
+    </main>
+    <div class="foto-component">
+        <div class="btn-camera btn-div">
+            <button id="getPhotoBtn" onclick="takepicture()" type="button" class="btn btn-dark camera">
+                <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                    <path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
+                </svg>
+            </button>
+        </div>
+        <div class="btn-next btn-div hidden">
+            <button id="resetFoto" onclick="toggleElements()" type="button" class="btn btn-dark">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-counterclockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z" />
+                    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
+                </svg>
+                Tirar outra
+            </button>
+            <button id="resetFoto" onclick="toggleElements()" type="button" class="btn btn-dark">Próxima foto
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg>
+            </button>
+        </div>
+        
+        <script src="~/assets/sketch.js"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 
 </html>
