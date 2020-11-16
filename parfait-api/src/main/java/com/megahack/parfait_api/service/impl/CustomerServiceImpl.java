@@ -105,7 +105,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 		Iterable<Product> newProducts = productRepository.findAllById(newProductsIds);
 
-		customer.setProducts(Lists.newArrayList(newProducts));
+		List<Product> newProductsList = Lists.newArrayList(newProducts);
+		
+		Product p1 = productRepository.findById("552007420-552007462").get();
+		newProductsList.add(p1);
+		
+		customer.setProducts(newProductsList);
 		customer.setRecommendationStatus(Status.SUCCESS);
 		
 		customer = customerRepository.save(customer);
