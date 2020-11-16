@@ -101,7 +101,7 @@ function finish() {
     let myCanvas = document.getElementById('canvas');
     var dataURL = myCanvas.toDataURL();
     objectImages.push(dataURL)
-    console.log(objectImages)
+    sendPictures(objectImages[0], objectImages[1])
 
     $(".foto-component").toggleClass("hidden")
     $(".main-canvas").toggleClass("hidden")
