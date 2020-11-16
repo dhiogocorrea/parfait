@@ -13,7 +13,7 @@ namespace ParfaitFront.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private static Dictionary<string,string> picturesObj = new Dictionary<string, string>();
+        private static Dictionary<string, Dictionary<string, string>> picturesObj = new Dictionary<string, Dictionary<string, string>>();
 
 
         public HomeController(ILogger<HomeController> logger)
@@ -42,19 +42,36 @@ namespace ParfaitFront.Controllers
             return View();
         }
 
-        public void AddPicturesObj(string photoType, string photoB64)
+        [HttpGet]
+        public async Task<IActionResult> SendPictures(string id, string front, string side)
         {
-            picturesObj.Add(photoType, photoB64);
+            if (picturesObj.ContainsKey(id) && picturesObj.ContainsKey("front") && picturesObj.ContainsKey("side") && !String.IsNullOrEmpty(id) && !String.IsNullOrEmpty(front) && !String.IsNullOrEmpty(side))
+            {
+                picturesObj[id]["front"] = front;
+                picturesObj[id]["side"] = side;
+            }
         }
 
-        public Dictionary<string,string> VirifyPicturesObj()
+        [HttpGet]
+        public async Task<IActionResult> GetNewCaptureId()
         {
-            if (picturesObj.Values.Count > 2)
-            {
-                return picturesObj;
-            }
+            string id = Guid.NewGuid().ToString().Split("-")[0];
+            Dictionary<string, string> list = new Dictionary<string, string>();
+            list.Add("front", "");
+            list.Add("side", "");
+            picturesObj.Add(id, list);
 
-            return null;
+            return Ok(id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> VerifyCapture(string id)
+        {
+            if (picturesObj.ContainsKey(id) && picturesObj[id].ContainsKey("front") && picturesObj[id].ContainsKey("side") && picturesObj[id]["front"] != "" && picturesObj[id]["side"] != "")
+            {
+                return picturesObj[id];
+            } 
+            return "";
         }
     }
 }

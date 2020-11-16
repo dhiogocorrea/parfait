@@ -1,7 +1,7 @@
 ﻿<nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
     <div class="container-fluid">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Início</a></li>
             <li class="breadcrumb-item active" aria-current="page">Entre ou cadastre-se</li>
         </ol>
     </div><!-- End .container -->
@@ -186,10 +186,9 @@
                                     <li><strong>4.</strong> Pelo celular, scaneie o QRCode ou acesse o link no navegador</li>
                                 </ul>
                                 <center class="mb-3">
-                                    <img src="~/assets/images/QRCode.png" width="150" height="150">
-                                    <a href="#">http://parfait.com.br/ArDga</a>
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://www.google.com" id="qrcodeUrl" width="150" height="150">
+                                    <a href="#" id="qrcodeLink">http://parfait.com.br/ArDga</a>
                                 </center>
-
 
                                 <div class="bg-light p-3 mb-2">
                                     <div class="form-group row text-left">
@@ -228,7 +227,7 @@
                                 <h5>POR FIM, QUEREMOS CONHECER O SEU ESTILO!</h5>
                                 <p>Marque abaixo as roupas que fazem o seu estilo e você usaria.</p>
                                 <div class="row my-3" style="max-height: 500px; overflow-y: auto" id="my-style">
-                                    
+
                                 </div>
                                 <style>
                                     .img-selected {
@@ -268,3 +267,43 @@
         </div><!-- End .modal-content -->
     </div><!-- End .modal-dialog -->
 </div><!-- End .modal -->
+
+@section Scripts{
+
+    <script>
+        $("#signin-modal").on("shown.bs.modal", function () {
+            let id = ""
+            $.ajax({
+                url: "@Url.Action("GetNewCaptureId")"
+            }).done(function (result) {
+                id = result
+                var url = "http://www.parfait.com/Measure/?id=" + id;
+                checkImages(id)
+                $("#qrcodeLink").attr("href", url).html(url)
+                $("#qrcodeUrl").attr("src", "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURI(url))
+            });
+
+            function checkImages(id) {
+                if (id != "" && $("#signin-modal").hasClass("show")) {
+                    $.ajax({
+                        url: "@Url.Action("VerifyCapture")"
+                    }).done(function (result) {
+                        if (result != "") {
+                            setTimeout(function () {
+                                checkImages(id)
+                            }, 2000)
+                        } else {
+                            if (typeof result["front"] != "undefined" && typeof result["side"] != "undefined") {
+                                alert("Fotos recebidas!")
+                            }
+                        }
+                    });
+                }
+            }
+            setInterval(function () {
+
+            }, 3000)
+
+        })
+    </script>
+}

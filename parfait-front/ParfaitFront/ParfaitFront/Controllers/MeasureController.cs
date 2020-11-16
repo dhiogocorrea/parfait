@@ -13,7 +13,7 @@ namespace ParfaitFront.Controllers
 
     public class MeasureController : Controller
     {
-        private string tokenUser;
+ 
         private readonly ILogger<HomeController> _logger;
 
         public MeasureController(ILogger<HomeController> logger)
