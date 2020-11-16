@@ -28,8 +28,9 @@ namespace ParfaitFront.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string stringSearch, string token)
+        public async Task<IActionResult> Index(string id)
         {
+            ViewBag.id = id;
             return View();
 
         }

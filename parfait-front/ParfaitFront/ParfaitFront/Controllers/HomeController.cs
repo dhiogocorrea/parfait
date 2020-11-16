@@ -43,13 +43,15 @@ namespace ParfaitFront.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SendPictures(string id, string front, string side)
+        public string SendPictures(string id, string front, string side)
         {
             if (picturesObj.ContainsKey(id) && picturesObj.ContainsKey("front") && picturesObj.ContainsKey("side") && !String.IsNullOrEmpty(id) && !String.IsNullOrEmpty(front) && !String.IsNullOrEmpty(side))
             {
                 picturesObj[id]["front"] = front;
                 picturesObj[id]["side"] = side;
+                return "ok";
             }
+            return "";
         }
 
         [HttpGet]
@@ -65,13 +67,13 @@ namespace ParfaitFront.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> VerifyCapture(string id)
+        public Dictionary<string, string> VerifyCapture(string id)
         {
-            if (picturesObj.ContainsKey(id) && picturesObj[id].ContainsKey("front") && picturesObj[id].ContainsKey("side") && picturesObj[id]["front"] != "" && picturesObj[id]["side"] != "")
+            if (id != null && picturesObj.ContainsKey(id) && picturesObj[id].ContainsKey("front") && picturesObj[id].ContainsKey("side") && picturesObj[id]["front"] != "" && picturesObj[id]["side"] != "")
             {
                 return picturesObj[id];
             } 
-            return "";
+            return null;
         }
     }
 }
